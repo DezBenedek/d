@@ -3,14 +3,20 @@ set -euo pipefail
 
 BINARY_NAME="d"
 IDENTIFIER="com.dezbenedek.d"
-VERSION="0.1.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STAGE_DIR="$SCRIPT_DIR/pkg-root"
-OUTPUT_PKG="$SCRIPT_DIR/d-installer.pkg"
+DOCS_DIR="$SCRIPT_DIR/docs"
+OUTPUT_PKG="$DOCS_DIR/d-installer.pkg"
 
 if ! command -v pkgbuild >/dev/null 2>&1; then
-  echo "A pkgbuild eszkoz hianyzik. Telepitsd az Xcode Command Line Tools-t:"
+  echo "A pkgbuild eszköz hiányzik. Telepítsd az Xcode Command Line Tools-t:"
   echo "  xcode-select --install"
+  exit 1
+fi
+
+VERSION="$(grep '^version' Cargo.toml | head -n1 | cut -d '"' -f2)"
+if [[ -z "$VERSION" ]]; then
+  echo "Nem sikerült kiolvasni a verziót a Cargo.toml-ból."
   exit 1
 fi
 
@@ -20,17 +26,18 @@ else
   INSTALL_DIR="/usr/local/bin"
 fi
 
-echo "Forditas release modban..."
+echo "Fordítás release módban (verzió: $VERSION)..."
 cd "$SCRIPT_DIR"
 cargo build --release
 
-echo "Staging mappa osszeallitasa ($STAGE_DIR)..."
+echo "Staging mappa összeállítása ($STAGE_DIR)..."
 rm -rf "$STAGE_DIR"
 mkdir -p "$STAGE_DIR$INSTALL_DIR"
 cp "target/release/$BINARY_NAME" "$STAGE_DIR$INSTALL_DIR/$BINARY_NAME"
 chmod +x "$STAGE_DIR$INSTALL_DIR/$BINARY_NAME"
 
-echo "Pkg osszeallitasa..."
+echo "Pkg összeállítása..."
+mkdir -p "$DOCS_DIR"
 pkgbuild \
   --root "$STAGE_DIR" \
   --identifier "$IDENTIFIER" \
@@ -41,7 +48,7 @@ pkgbuild \
 rm -rf "$STAGE_DIR"
 
 echo ""
-echo "Kesz: $OUTPUT_PKG"
-echo "Alairatlan csomag, ezert az elso megnyitasnal:"
-echo "  jobb-katt a pkg-n -> Megnyitas -> Megnyitas megerositese"
-echo "vagy System Settings -> Privacy & Security -> Open Anyway."
+echo "Kész: $OUTPUT_PKG"
+echo "Aláíratlan csomag, ezért az első megnyitásnál:"
+echo "  jobb-katt a pkg-n → Megnyitás → Megnyitás megerősítése"
+echo "vagy System Settings → Privacy & Security → Open Anyway."

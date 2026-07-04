@@ -1,1 +1,1 @@
-https://github.com/DezBenedek/d/releases/download/v0.3.0/d
+https://github.com/DezBenedek/d/releases/download/v0.4.0/d
