@@ -5,7 +5,17 @@ use std::process::Command;
 
 const GITHUB_RELEASES_LATEST_URL: &str =
     "https://api.github.com/repos/DezBenedek/d/releases/latest";
-const BINARY_ASSET_NAME: &str = "d";
+#[cfg(all(target_os = "macos", target_arch = "aarch64"))]
+const BINARY_ASSET_NAME: &str = "d-macos-arm64";
+
+#[cfg(all(target_os = "macos", target_arch = "x86_64"))]
+const BINARY_ASSET_NAME: &str = "d-macos-x64";
+
+#[cfg(target_os = "linux")]
+const BINARY_ASSET_NAME: &str = "d-linux-x64";
+
+#[cfg(target_os = "windows")]
+const BINARY_ASSET_NAME: &str = "d-windows-x64.exe";
 
 pub fn run() {
     if let Err(error) = update_binary() {
@@ -97,7 +107,18 @@ fn make_executable(path: &PathBuf) -> Result<(), String> {
 }
 
 fn replace_current_binary(temp_path: &PathBuf, current_path: &PathBuf) -> Result<(), String> {
+    let old_path = current_path.with_extension("old");
+
+    fs::rename(current_path, &old_path)
+        .map_err(|error| format!("nem sikerült félretenni a futó binárist: {error}"))?;
+
     fs::rename(temp_path, current_path).map_err(|error| {
-        format!("nem sikerült lecserélni a futó binárist (jogosultság hiánya?): {error}")
-    })
+        format!(
+            "nem sikerült a helyére tenni az új binárist (a régi itt maradt: {old_path:?}): {error}"
+        )
+    })?;
+
+    let _ = fs::remove_file(&old_path);
+
+    Ok(())
 }
