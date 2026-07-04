@@ -36,18 +36,18 @@ fn fetch_latest_download_url() -> Result<String, String> {
 
     if !output.status.success() {
         return Err(format!(
-            "a GitHub API lekérdezése hibával tért vissza (kód: {:?}) - létezik már kiadás a repóban?"
+            "a GitHub API lekérdezése hibával tért vissza (kód: {:?}) - létezik már kiadás a repóban?",
             output.status.code()
         ));
     }
 
     let response_body = String::from_utf8_lossy(&output.stdout);
     let release: serde_json::Value = serde_json::from_str(&response_body)
-        .map_err(|error| format!("nem sikerült értelmezni a GitHub válaszát: {error}"))?
+        .map_err(|error| format!("nem sikerült értelmezni a GitHub válaszát: {error}"))?;
 
     let assets = release["assets"]
         .as_array()
-        .ok_or_else(|| "a kiadásnak nincsenek csatolt fájljai (assets)".to_string())?
+        .ok_or_else(|| "a kiadásnak nincsenek csatolt fájljai (assets)".to_string())?;
 
     let matching_asset = assets
         .iter()
