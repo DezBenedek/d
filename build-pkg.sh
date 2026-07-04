@@ -6,7 +6,7 @@ IDENTIFIER="com.dezbenedek.d"
 VERSION="0.1.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STAGE_DIR="$SCRIPT_DIR/pkg-root"
-OUTPUT_PKG="$SCRIPT_DIR/dz-installer.pkg"
+OUTPUT_PKG="$SCRIPT_DIR/d-installer.pkg"
 
 if ! command -v pkgbuild >/dev/null 2>&1; then
   echo "A pkgbuild eszkoz hianyzik. Telepitsd az Xcode Command Line Tools-t:"

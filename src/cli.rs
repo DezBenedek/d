@@ -9,8 +9,10 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
-    /// A gep helyi (LAN) IP-cimenek kiirasa
     Ip,
-    /// A legujabb verzio letoltese es telepitese (github.com/DezBenedek/d)
     Update,
+    Push {
+        #[arg(trailing_var_arg = true)]
+        message: Vec<String>,
+    },
 }

@@ -1,0 +1,1 @@
+/Users/dezbenedek/Programozás/d/target/release/d: /Users/dezbenedek/Programozás/d/src/cli.rs /Users/dezbenedek/Programozás/d/src/commands/ip.rs /Users/dezbenedek/Programozás/d/src/commands/mod.rs /Users/dezbenedek/Programozás/d/src/commands/push.rs /Users/dezbenedek/Programozás/d/src/commands/update.rs /Users/dezbenedek/Programozás/d/src/main.rs

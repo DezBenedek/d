@@ -10,5 +10,6 @@ fn main() {
     match cli.command {
         Commands::Ip => commands::ip::run(),
         Commands::Update => commands::update::run(),
+        Commands::Push { message } => commands::push::run(message),
     }
 }
