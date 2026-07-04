@@ -4,7 +4,7 @@ pub fn run(message_words: Vec<String>) {
     let message = message_words.join(" ");
 
     if message.trim().is_empty() {
-        eprintln!("Adj meg egy commit uzenetet! Pl: d push javitas kesz");
+        eprintln!("Adj meg egy commit üzenetet! Pl: d push javítás kész");
         std::process::exit(1);
     }
 
@@ -20,7 +20,7 @@ pub fn run(message_words: Vec<String>) {
     let branch = match current_branch() {
         Ok(branch) => branch,
         Err(error) => {
-            eprintln!("nem sikerult lekerdezni az aktualis branch-et: {error}");
+            eprintln!("nem sikerült lekérdezni az aktuális branch-et: {error}");
             std::process::exit(1);
         }
     };

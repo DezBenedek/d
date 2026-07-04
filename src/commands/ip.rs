@@ -3,7 +3,7 @@ use std::net::UdpSocket;
 pub fn run() {
     match local_ip() {
         Ok(addr) => println!("Helyi IP: {addr}"),
-        Err(error) => eprintln!("Nem sikerult lekerdezni a helyi IP-t: {error}"),
+        Err(error) => eprintln!("Nem sikerült lekérdezni a helyi IP-t: {error}"),
     }
 }
 
