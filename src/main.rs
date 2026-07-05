@@ -29,5 +29,6 @@ fn main() {
             eprintln!("Adj meg egy parancsot! Nézd meg: d --help");
             std::process::exit(1);
         }
+        Some(Commands::Macos { command }) => commands::macos::run(command),
     }
 }

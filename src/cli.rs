@@ -32,6 +32,11 @@ pub enum Commands {
         #[command(subcommand)]
         command: GitCommands,
     },
+    /// macOS-specifikus beallitasok (start, tobbi kesobb)
+    Macos {
+        #[command(subcommand)]
+        command: MacosCommands,
+    },
 }
 
 #[derive(Subcommand)]
@@ -40,4 +45,9 @@ pub enum GitCommands {
     Fix,
     /// git-hez kapcsolódó frissítési művelet
     Update,
+}
+#[derive(Subcommand)]
+pub enum MacosCommands {
+    /// Kezdeti macOS-beallitasok: akku szazalek, Finder path/status bar, rejtett fajlok
+    Start,
 }

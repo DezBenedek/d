@@ -13,11 +13,7 @@ echo "Forditas release modban (meret-optimalizalt profillal)..."
 cd "$SCRIPT_DIR"
 cargo build --release
 
-if [[ "$(uname -m)" == "arm64" ]]; then
-  INSTALL_DIR="/opt/homebrew/bin"
-else
-  INSTALL_DIR="/usr/local/bin"
-fi
+INSTALL_DIR="$HOME/.local/bin"
 
 if [[ ! -d "$INSTALL_DIR" ]]; then
   echo "A cel mappa ($INSTALL_DIR) nem letezik, letrehozom..."

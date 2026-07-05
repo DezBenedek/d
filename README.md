@@ -11,7 +11,7 @@ A `d` egy parancssoros segédeszköz, amely összevonja a mindennapi fejlesztői
 ### MacOS
 
 ```bash
-curl -fsSL https://dcli.dezso.hu/install.sh | sh
+curl -fsSL https://dcli.dezso.hu/install.sh | bash
 ```
 
 Telepítés után ellenőrizd a működést:
