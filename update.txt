@@ -1,0 +1,7 @@
+# d
+The ultimate CLI for MacOS
+
+commands:
+gh release create v0.4.0 target/release/d d-installer.pkg --notes "v0.4.0"
+cargo build --release
+./build-pkg.sh
