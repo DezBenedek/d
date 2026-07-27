@@ -37,7 +37,7 @@ pub enum Commands {
         #[command(subcommand)]
         command: MacosCommands,
     },
-    /// Generáló segédparancsok (secret, többi később)
+    /// Generáló segédparancsok (hex, base64)
     Gen {
         #[command(subcommand)]
         command: GenCommands,
@@ -59,9 +59,15 @@ pub enum MacosCommands {
 
 #[derive(Subcommand)]
 pub enum GenCommands {
-    /// Véletlenszerű hex secret generálása (`openssl rand -hex`)
-    Secret {
-        /// A hex byte-ok száma (alapértelmezett: 32)
+    /// Véletlenszerű hex generálása (`openssl rand -hex`)
+    Hex {
+        /// A byte-ok száma (alapértelmezett: 32)
+        #[arg(default_value_t = 32)]
+        bytes: u32,
+    },
+    /// Véletlenszerű base64 generálása (`openssl rand -base64`)
+    Base64 {
+        /// A byte-ok száma (alapértelmezett: 32)
         #[arg(default_value_t = 32)]
         bytes: u32,
     },

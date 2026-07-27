@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.3] - 2026-07-27
+
+### Changed
+- `d gen secret` → `d gen hex` (opcionális hossz, alapértelmezett: 32)
+
+### Added
+- `d gen base64` — véletlenszerű base64 (`openssl rand -base64`, alapértelmezett: 32 byte)
+- `d gen base64 <n>` / `d gen hex <n>` — tetszőleges hossz
+
 ## [0.4.2] - 2026-07-27
 
 ### Added

@@ -29,8 +29,10 @@ d --help
 | `d update` | A legújabb verzió letöltése és telepítése GitHub-ról |
 | `d git fix` | `.gitignore`-ban tiltott, de már trackelt fájlok eltávolítása a git indexből |
 | `d git update` | Git-hez kapcsolódó frissítési művelet |
-| `d gen secret` | Véletlenszerű hex secret (`openssl rand -hex 32`) |
-| `d gen secret 64` | Hex secret megadott hosszal (`openssl rand -hex 64`) |
+| `d gen hex` | Véletlenszerű hex (`openssl rand -hex 32`) |
+| `d gen hex 64` | Hex megadott hosszal (`openssl rand -hex 64`) |
+| `d gen base64` | Véletlenszerű base64 (`openssl rand -base64 32`) |
+| `d gen base64 64` | Base64 megadott hosszal (`openssl rand -base64 64`) |
 | `--authors` | A szerző nevének kiírása |
 | `--doc` | A dokumentáció linkjének kiírása |
 
@@ -60,11 +62,13 @@ d update
 d git fix
 ```
 
-### Secret generálása
+### Hex / base64 generálása
 
 ```bash
-d gen secret
-d gen secret 64
+d gen hex
+d gen hex 64
+d gen base64
+d gen base64 64
 ```
 
 ## Fejlesztés
@@ -84,7 +88,7 @@ cargo run -- --help
 
 ## Információk
 
-- **Verzió:** 0.4.2
+- **Verzió:** 0.4.3
 - **Szerző:** Dezső Benedek
 - **Dokumentáció:** [GitHub repo](https://github.com/DezBenedek/d)
 - **Licenc:** MIT

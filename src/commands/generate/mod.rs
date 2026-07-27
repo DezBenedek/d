@@ -1,9 +1,10 @@
-mod secret;
+mod rand;
 
 use crate::cli::GenCommands;
 
 pub fn run(command: GenCommands) {
     match command {
-        GenCommands::Secret { bytes } => secret::run(bytes),
+        GenCommands::Hex { bytes } => rand::run(rand::Encoding::Hex, bytes),
+        GenCommands::Base64 { bytes } => rand::run(rand::Encoding::Base64, bytes),
     }
 }
