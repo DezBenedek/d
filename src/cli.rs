@@ -37,6 +37,11 @@ pub enum Commands {
         #[command(subcommand)]
         command: MacosCommands,
     },
+    /// Generáló segédparancsok (secret, többi később)
+    Gen {
+        #[command(subcommand)]
+        command: GenCommands,
+    },
 }
 
 #[derive(Subcommand)]
@@ -50,4 +55,14 @@ pub enum GitCommands {
 pub enum MacosCommands {
     /// Kezdeti macOS-beallitasok: akku szazalek, Finder path/status bar, rejtett fajlok
     Start,
+}
+
+#[derive(Subcommand)]
+pub enum GenCommands {
+    /// Véletlenszerű hex secret generálása (`openssl rand -hex`)
+    Secret {
+        /// A hex byte-ok száma (alapértelmezett: 32)
+        #[arg(default_value_t = 32)]
+        bytes: u32,
+    },
 }

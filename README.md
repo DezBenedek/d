@@ -29,6 +29,8 @@ d --help
 | `d update` | A legújabb verzió letöltése és telepítése GitHub-ról |
 | `d git fix` | `.gitignore`-ban tiltott, de már trackelt fájlok eltávolítása a git indexből |
 | `d git update` | Git-hez kapcsolódó frissítési művelet |
+| `d gen secret` | Véletlenszerű hex secret (`openssl rand -hex 32`) |
+| `d gen secret 64` | Hex secret megadott hosszal (`openssl rand -hex 64`) |
 | `--authors` | A szerző nevének kiírása |
 | `--doc` | A dokumentáció linkjének kiírása |
 
@@ -58,6 +60,13 @@ d update
 d git fix
 ```
 
+### Secret generálása
+
+```bash
+d gen secret
+d gen secret 64
+```
+
 ## Fejlesztés
 
 A projekt Rust nyelven íródott, és a [`clap`](https://crates.io/crates/clap) könyvtárat használja parancssor-feldolgozásra.
@@ -75,7 +84,7 @@ cargo run -- --help
 
 ## Információk
 
-- **Verzió:** 0.4.0
+- **Verzió:** 0.4.2
 - **Szerző:** Dezső Benedek
 - **Dokumentáció:** [GitHub repo](https://github.com/DezBenedek/d)
 - **Licenc:** MIT

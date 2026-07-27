@@ -1,3 +1,4 @@
+pub mod generate;
 pub mod git;
 pub mod ip;
 pub mod macos;

@@ -25,10 +25,11 @@ fn main() {
         Some(Commands::Update) => commands::update::run(),
         Some(Commands::Push { message }) => commands::push::run(message),
         Some(Commands::Git { command }) => commands::git::run(command),
+        Some(Commands::Macos { command }) => commands::macos::run(command),
+        Some(Commands::Gen { command }) => commands::generate::run(command),
         None => {
             eprintln!("Adj meg egy parancsot! Nézd meg: d --help");
             std::process::exit(1);
         }
-        Some(Commands::Macos { command }) => commands::macos::run(command),
     }
 }
