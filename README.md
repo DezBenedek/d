@@ -25,6 +25,8 @@ d --help
 | Parancs | Leírás |
 |---------|--------|
 | `d ip` | A gép helyi (LAN) IP-címének kiírása |
+| `d version` | A CLI verziószámának kiírása |
+| `d` / `d help` | Súgó (argumentum nélkül is) |
 | `d push "üzenet"` | `git add -A` + commit + push az aktuális branch-re |
 | `d update` | A legújabb verzió letöltése és telepítése GitHub-ról |
 | `d git fix` | `.gitignore`-ban tiltott, de már trackelt fájlok eltávolítása a git indexből |
@@ -95,7 +97,7 @@ cargo run -- --help
 
 ## Információk
 
-- **Verzió:** 0.4.4
+- **Verzió:** 0.5.0
 - **Szerző:** Dezső Benedek
 - **Dokumentáció:** [GitHub repo](https://github.com/DezBenedek/d)
 - **Licenc:** MIT

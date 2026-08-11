@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.0] - 2026-08-11
+
+### Added
+- `d version` — verziószám kiírása
+- `d` (argumentum nélkül) — ugyanaz a help, mint a `d --help`
+
 ## [0.4.4] - 2026-08-11
 
 ### Added

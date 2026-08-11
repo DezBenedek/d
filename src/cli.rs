@@ -19,6 +19,8 @@ pub struct Cli {
 pub enum Commands {
     /// A gép helyi (LAN) IP-címének kiírása
     Ip,
+    /// A CLI verziószámának kiírása
+    Version,
     /// A legújabb verzió letöltése és telepítése (github.com/DezBenedek/d)
     Update,
     /// git add -A + commit + push az aktuális branch-re
