@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0] - 2026-08-11
+
+### Added
+- Full multilingual UI with auto-detect (en default): Hungarian, German, Spanish, Italian, Chinese, Russian, Ukrainian
+- `--lang` / `-L` and `D_LANG` overrides
+- Localized help, prompts, and command messages
+
 ## [0.5.0] - 2026-08-11
 
 ### Added

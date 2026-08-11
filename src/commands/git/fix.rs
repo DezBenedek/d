@@ -1,45 +1,58 @@
+use crate::i18n::{
+    tr, trf, ERR_EXIT_CODE, ERR_START_PROGRAM, GIT_FIX_DONE, GIT_FIX_EMPTY, GIT_FIX_LIST_ERR,
+    GIT_FIX_REMOVING, GIT_FIX_UNTRACK_ERR,
+};
 use std::process::Command;
 
 pub fn run() {
     let ignored_tracked_files = match list_ignored_tracked_files() {
         Ok(files) => files,
         Err(error) => {
-            eprintln!("Nem sikerült listázni a git-ignore-olt, de trackelt fájlokat: {error}");
+            eprintln!("{}", trf(&GIT_FIX_LIST_ERR, &[("error", &error)]));
             std::process::exit(1);
         }
     };
 
     if ignored_tracked_files.is_empty() {
-        println!("Nincs olyan fájl, amit a .gitignore tiltana, de a git mégis trackelne.");
+        println!("{}", tr(&GIT_FIX_EMPTY));
         return;
     }
 
     println!(
-        "Eltávolítás a git trackingből ({} fájl):",
-        ignored_tracked_files.len()
+        "{}",
+        trf(
+            &GIT_FIX_REMOVING,
+            &[("count", &ignored_tracked_files.len().to_string())]
+        )
     );
     for file in &ignored_tracked_files {
         println!("  {file}");
     }
 
     if let Err(error) = untrack_files(&ignored_tracked_files) {
-        eprintln!("Nem sikerült eltávolítani a fájlokat: {error}");
+        eprintln!("{}", trf(&GIT_FIX_UNTRACK_ERR, &[("error", &error)]));
         std::process::exit(1);
     }
 
-    println!(
-        "Kész. A változást még commitolnod kell, pl.: d push gitignore-olt fajlok eltavolitasa"
-    );
+    println!("{}", tr(&GIT_FIX_DONE));
 }
 
 fn list_ignored_tracked_files() -> Result<Vec<String>, String> {
     let output = Command::new("git")
         .args(["ls-files", "-ci", "--exclude-standard"])
         .output()
-        .map_err(|error| format!("nem sikerült elindítani a git-et: {error}"))?;
+        .map_err(|error| {
+            trf(
+                &ERR_START_PROGRAM,
+                &[("program", "git"), ("error", &error.to_string())],
+            )
+        })?;
 
     if !output.status.success() {
-        return Err(format!("kilépési kód: {:?}", output.status.code()));
+        return Err(trf(
+            &ERR_EXIT_CODE,
+            &[("code", &format!("{:?}", output.status.code()))],
+        ));
     }
 
     let files = String::from_utf8_lossy(&output.stdout)
@@ -59,11 +72,19 @@ fn untrack_files(files: &[String]) -> Result<(), String> {
         .arg("--")
         .args(files)
         .status()
-        .map_err(|error| format!("nem sikerült elindítani a git-et: {error}"))?;
+        .map_err(|error| {
+            trf(
+                &ERR_START_PROGRAM,
+                &[("program", "git"), ("error", &error.to_string())],
+            )
+        })?;
 
     if status.success() {
         Ok(())
     } else {
-        Err(format!("kilépési kód: {:?}", status.code()))
+        Err(trf(
+            &ERR_EXIT_CODE,
+            &[("code", &format!("{:?}", status.code()))],
+        ))
     }
 }

@@ -1,34 +1,49 @@
+use crate::i18n::{
+    tr, trf, ERR_EMPTY_BRANCH, ERR_EXIT_CODE, ERR_START_PROGRAM, GIT_PULL_BRANCH_ERR, GIT_PULL_FAIL,
+    GIT_PULL_FETCHING, GIT_PULL_OK,
+};
 use std::process::Command;
 
 pub fn run() {
     let branch = match current_branch() {
         Ok(branch) => branch,
         Err(error) => {
-            eprintln!("Nem sikerült lekérdezni az aktuális branch-et: {error}");
+            eprintln!("{}", trf(&GIT_PULL_BRANCH_ERR, &[("error", &error)]));
             std::process::exit(1);
         }
     };
 
-    println!("Legfrissebb változások letöltése: origin/{branch}");
+    println!(
+        "{}",
+        trf(&GIT_PULL_FETCHING, &[("branch", &branch)])
+    );
 
     if let Err(error) = run_git(&["pull", "origin", &branch]) {
-        eprintln!("git pull sikertelen: {error}");
+        eprintln!("{}", trf(&GIT_PULL_FAIL, &[("error", &error)]));
         std::process::exit(1);
     }
 
-    println!("Sikeres frissítés.");
+    println!("{}", tr(&GIT_PULL_OK));
 }
 
 fn run_git(args: &[&str]) -> Result<(), String> {
     let status = Command::new("git")
         .args(args)
         .status()
-        .map_err(|error| format!("nem sikerült elindítani a git-et: {error}"))?;
+        .map_err(|error| {
+            trf(
+                &ERR_START_PROGRAM,
+                &[("program", "git"), ("error", &error.to_string())],
+            )
+        })?;
 
     if status.success() {
         Ok(())
     } else {
-        Err(format!("kilépési kód: {:?}", status.code()))
+        Err(trf(
+            &ERR_EXIT_CODE,
+            &[("code", &format!("{:?}", status.code()))],
+        ))
     }
 }
 
@@ -36,15 +51,23 @@ fn current_branch() -> Result<String, String> {
     let output = Command::new("git")
         .args(["branch", "--show-current"])
         .output()
-        .map_err(|error| format!("nem sikerült elindítani a git-et: {error}"))?;
+        .map_err(|error| {
+            trf(
+                &ERR_START_PROGRAM,
+                &[("program", "git"), ("error", &error.to_string())],
+            )
+        })?;
 
     if !output.status.success() {
-        return Err(format!("kilépési kód: {:?}", output.status.code()));
+        return Err(trf(
+            &ERR_EXIT_CODE,
+            &[("code", &format!("{:?}", output.status.code()))],
+        ));
     }
 
     let branch = String::from_utf8_lossy(&output.stdout).trim().to_string();
     if branch.is_empty() {
-        return Err("üres branch név (detached HEAD állapotban vagy?)".to_string());
+        return Err(tr(&ERR_EMPTY_BRANCH).to_string());
     }
 
     Ok(branch)

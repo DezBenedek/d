@@ -1,15 +1,19 @@
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
-#[command(name = "d", version, about = "d CLI - by Dezső Benedek Péter")]
+#[command(name = "d", version, about = "d CLI — by Dezső Benedek Péter")]
 pub struct Cli {
-    /// A szerző nevének kiírása
+    /// Print the author name
     #[arg(long, action = clap::ArgAction::SetTrue)]
     pub authors: bool,
 
-    /// A dokumentáció linkjének kiírása
+    /// Print the documentation URL
     #[arg(long, action = clap::ArgAction::SetTrue)]
     pub doc: bool,
+
+    /// UI language (en, hu, de, es, it, zh, ru, uk)
+    #[arg(long, short = 'L', global = true, value_name = "LANG")]
+    pub lang: Option<String>,
 
     #[command(subcommand)]
     pub command: Option<Commands>,
@@ -17,29 +21,29 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
-    /// A gép helyi (LAN) IP-címének kiírása
+    /// Print the machine's local (LAN) IP address
     Ip,
-    /// A CLI verziószámának kiírása
+    /// Print the CLI version
     Version,
-    /// A legújabb verzió letöltése és telepítése (github.com/DezBenedek/d)
+    /// Download and install the latest version (github.com/DezBenedek/d)
     Update,
-    /// git add -A + commit + push az aktuális branch-re
+    /// git add -A + commit + push to the current branch
     Push {
-        /// A commit üzenet (több szó esetén automatikusan összefűzve)
+        /// Commit message (multiple words are joined automatically)
         #[arg(trailing_var_arg = true)]
         message: Vec<String>,
     },
-    /// Git-hez kapcsolódó segédparancsok (fix, setup, update)
+    /// Git helpers (fix, setup, update)
     Git {
         #[command(subcommand)]
         command: GitCommands,
     },
-    /// macOS-specifikus beallitasok (start, tobbi kesobb)
+    /// macOS-specific settings (start, more later)
     Macos {
         #[command(subcommand)]
         command: MacosCommands,
     },
-    /// Generáló segédparancsok (hex, base64)
+    /// Generators (hex, base64)
     Gen {
         #[command(subcommand)]
         command: GenCommands,
@@ -48,30 +52,31 @@ pub enum Commands {
 
 #[derive(Subcommand)]
 pub enum GitCommands {
-    /// A .gitignore által tiltott, de már trackelt fájlok eltávolítása a git indexből
+    /// Untrack files that are ignored by .gitignore but still tracked
     Fix,
-    /// Interaktív git + GitHub repo setup (gh CLI-vel)
+    /// Interactive git + GitHub repo setup (via gh CLI)
     Setup,
-    /// git-hez kapcsolódó frissítési művelet
+    /// Pull the latest changes for the current branch
     Update,
 }
+
 #[derive(Subcommand)]
 pub enum MacosCommands {
-    /// Kezdeti macOS-beallitasok: akku szazalek, Finder path/status bar, rejtett fajlok
+    /// Initial macOS tweaks: battery %, Finder path/status bar, hidden files
     Start,
 }
 
 #[derive(Subcommand)]
 pub enum GenCommands {
-    /// Véletlenszerű hex generálása (`openssl rand -hex`)
+    /// Generate random hex (`openssl rand -hex`)
     Hex {
-        /// A byte-ok száma (alapértelmezett: 32)
+        /// Number of bytes (default: 32)
         #[arg(default_value_t = 32)]
         bytes: u32,
     },
-    /// Véletlenszerű base64 generálása (`openssl rand -base64`)
+    /// Generate random base64 (`openssl rand -base64`)
     Base64 {
-        /// A byte-ok száma (alapértelmezett: 32)
+        /// Number of bytes (default: 32)
         #[arg(default_value_t = 32)]
         bytes: u32,
     },

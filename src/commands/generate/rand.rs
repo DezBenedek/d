@@ -1,3 +1,4 @@
+use crate::i18n::{tr, trf, GEN_BYTES_ZERO, GEN_OPENSSL_FAIL, GEN_OPENSSL_START};
 use std::process::Command;
 
 pub enum Encoding {
@@ -16,7 +17,7 @@ impl Encoding {
 
 pub fn run(encoding: Encoding, bytes: u32) {
     if bytes == 0 {
-        eprintln!("A byte-számnak nagyobbnak kell lennie nullánál.");
+        eprintln!("{}", tr(&GEN_BYTES_ZERO));
         std::process::exit(1);
     }
 
@@ -38,13 +39,24 @@ pub fn run(encoding: Encoding, bytes: u32) {
         Ok(result) => {
             let stderr = String::from_utf8_lossy(&result.stderr);
             eprintln!(
-                "Az openssl rand {flag} {bytes} sikertelen volt (kód: {:?}): {stderr}",
-                result.status.code()
+                "{}",
+                trf(
+                    &GEN_OPENSSL_FAIL,
+                    &[
+                        ("flag", flag),
+                        ("bytes", &bytes.to_string()),
+                        ("code", &format!("{:?}", result.status.code())),
+                        ("stderr", stderr.trim()),
+                    ]
+                )
             );
             std::process::exit(1);
         }
         Err(error) => {
-            eprintln!("Nem sikerült elindítani az openssl-t: {error}");
+            eprintln!(
+                "{}",
+                trf(&GEN_OPENSSL_START, &[("error", &error.to_string())])
+            );
             std::process::exit(1);
         }
     }

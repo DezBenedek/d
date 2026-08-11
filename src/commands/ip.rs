@@ -1,9 +1,13 @@
+use crate::i18n::{trf, IP_ERR, IP_OK};
 use std::net::UdpSocket;
 
 pub fn run() {
     match local_ip() {
-        Ok(addr) => println!("Helyi IP: {addr}"),
-        Err(error) => eprintln!("Nem sikerült lekérdezni a helyi IP-t: {error}"),
+        Ok(addr) => println!("{}", trf(&IP_OK, &[("addr", &addr)])),
+        Err(error) => {
+            let error = error.to_string();
+            eprintln!("{}", trf(&IP_ERR, &[("error", &error)]));
+        }
     }
 }
 

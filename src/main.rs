@@ -1,14 +1,22 @@
 mod cli;
 mod commands;
+mod i18n;
 
-use clap::{CommandFactory, Parser};
+use clap::{CommandFactory, FromArgMatches};
 use cli::{Cli, Commands};
 
 const AUTHOR_NAME: &str = "Dezső Benedek";
 const DOCUMENTATION_URL: &str = "https://github.com/DezBenedek/d";
 
 fn main() {
-    let cli = Cli::parse();
+    i18n::init_from_args(std::env::args());
+
+    let cmd = i18n::apply_translations(Cli::command());
+    let matches = cmd.get_matches();
+    let cli = match Cli::from_arg_matches(&matches) {
+        Ok(cli) => cli,
+        Err(error) => error.exit(),
+    };
 
     if cli.authors {
         println!("{AUTHOR_NAME}");
@@ -30,10 +38,6 @@ fn main() {
         Some(Commands::Git { command }) => commands::git::run(command),
         Some(Commands::Macos { command }) => commands::macos::run(command),
         Some(Commands::Gen { command }) => commands::generate::run(command),
-        None => {
-            let mut command = Cli::command();
-            command.print_help().ok();
-            println!();
-        }
+        None => i18n::print_help(),
     }
 }

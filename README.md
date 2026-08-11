@@ -27,6 +27,7 @@ d --help
 | `d ip` | A gép helyi (LAN) IP-címének kiírása |
 | `d version` | A CLI verziószámának kiírása |
 | `d` / `d help` | Súgó (argumentum nélkül is) |
+| `--lang` / `-L` | Felület nyelve (en, hu, de, es, it, zh, ru, uk) |
 | `d push "üzenet"` | `git add -A` + commit + push az aktuális branch-re |
 | `d update` | A legújabb verzió letöltése és telepítése GitHub-ról |
 | `d git fix` | `.gitignore`-ban tiltott, de már trackelt fájlok eltávolítása a git indexből |
@@ -97,7 +98,7 @@ cargo run -- --help
 
 ## Információk
 
-- **Verzió:** 0.5.0
+- **Verzió:** 1.0.0
 - **Szerző:** Dezső Benedek
 - **Dokumentáció:** [GitHub repo](https://github.com/DezBenedek/d)
 - **Licenc:** MIT
