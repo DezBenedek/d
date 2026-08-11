@@ -1,108 +1,165 @@
 # d CLI
 
-> Egyszerűsített parancssoros eszköz macOS-re — IP-cím lekérdezés, git push, automatikus frissítés és még sok más.
+A small, fast command-line toolkit for everyday developer tasks on macOS — git workflow helpers, GitHub repo setup, local networking, secret generation, and self-updates.
 
-## Áttekintés
+## Why d?
 
-A `d` egy parancssoros segédeszköz, amely összevonja a mindennapi fejlesztői feladatokat: helyi IP-cím gyors lekérdezése, egy gombnyomással git commit és push, valamint automatikus frissítési rendszer.
+Instead of juggling several one-off scripts and long git/gh invocations, `d` wraps the most common actions into short, memorable commands:
 
-## Telepítés
+- **One-shot commit & push** — `d push your message here`
+- **Interactive GitHub repo setup** — create or overwrite a repo with backup of old code
+- **Self-updating binary** — `d update` pulls the latest GitHub release
+- **Multilingual UI** — auto-detects your system language (English by default)
 
-### MacOS
+Built in Rust with a size-optimized release profile.
+
+## Install
 
 ```bash
 curl -fsSL https://dcli.dezso.hu/install.sh | bash
 ```
 
-Telepítés után ellenőrizd a működést:
+Verify:
 
 ```bash
+d version
+# or
 d --help
 ```
 
-## Parancsok
+You can also download binaries from the [GitHub Releases](https://github.com/DezBenedek/d/releases) page (`d` binary or `d-installer.pkg`).
 
-| Parancs | Leírás |
-|---------|--------|
-| `d ip` | A gép helyi (LAN) IP-címének kiírása |
-| `d version` | A CLI verziószámának kiírása |
-| `d` / `d help` | Súgó (argumentum nélkül is) |
-| `--lang` / `-L` | Felület nyelve (en, hu, de, es, it, zh, ru, uk) |
-| `d push "üzenet"` | `git add -A` + commit + push az aktuális branch-re |
-| `d update` | A legújabb verzió letöltése és telepítése GitHub-ról |
-| `d git fix` | `.gitignore`-ban tiltott, de már trackelt fájlok eltávolítása a git indexből |
-| `d git setup` | Interaktív git + GitHub repo setup (`gh` CLI) |
-| `d git update` | Git-hez kapcsolódó frissítési művelet |
-| `d gen hex` | Véletlenszerű hex (`openssl rand -hex 32`) |
-| `d gen hex 64` | Hex megadott hosszal (`openssl rand -hex 64`) |
-| `d gen base64` | Véletlenszerű base64 (`openssl rand -base64 32`) |
-| `d gen base64 64` | Base64 megadott hosszal (`openssl rand -base64 64`) |
-| `--authors` | A szerző nevének kiírása |
-| `--doc` | A dokumentáció linkjének kiírása |
+## Features
 
-## Példák
+### Quick git push
 
-### Helyi IP-cím lekérdezése
+Stages everything, commits, and pushes the current branch in one step:
 
 ```bash
-d ip
+d push add login screen
 ```
 
-### Gyors commit és push
+### Git helpers
 
-```bash
-d push "új funkció hozzáadva"
-```
+| Command | What it does |
+|---------|----------------|
+| `d git setup` | Interactive setup: ensures `gh` is installed/authenticated, configures `user.name` / `user.email`, creates a public or private GitHub repo (optional org), or overwrites an existing one after moving old remote code to a `backup/pre-setup-*` branch |
+| `d git fix` | Untracks files that are listed in `.gitignore` but still tracked in the index |
+| `d git update` | `git pull origin <current-branch>` |
 
-### Frissítés a legújabb verzióra
+### Self-update
+
+Downloads the latest release asset from GitHub and replaces the running binary:
 
 ```bash
 d update
 ```
 
-### Git index tisztítása
+### Local IP
+
+Prints your machine’s LAN IP (useful for local servers / device testing):
 
 ```bash
-d git fix
+d ip
 ```
 
-### Git + GitHub repo setup
+### Secret / token generators
+
+Thin wrappers around OpenSSL:
 
 ```bash
-d git setup
-```
-
-### Hex / base64 generálása
-
-```bash
-d gen hex
+d gen hex        # 32 bytes → hex
 d gen hex 64
-d gen base64
+d gen base64     # 32 bytes → base64
 d gen base64 64
 ```
 
-## Fejlesztés
+### macOS defaults
 
-A projekt Rust nyelven íródott, és a [`clap`](https://crates.io/crates/clap) könyvtárat használja parancssor-feldolgozásra.
+Apply a small set of sensible Finder / menu bar defaults:
 
 ```bash
-# Projekt fordítása
-cargo build --release
-
-# Futtatás fejlesztési módban
-cargo run -- --help
-
-# Csomag csomagolása
-./build-pkg.sh
+d macos start
 ```
 
-## Információk
+Enables battery percentage, path bar, status bar, and hidden files, then restarts Finder / Control Center.
 
-- **Verzió:** 1.0.0
-- **Szerző:** Dezső Benedek
-- **Dokumentáció:** [GitHub repo](https://github.com/DezBenedek/d)
-- **Licenc:** MIT
+### Multilingual UI
 
----
+Supported languages: **en** (default), **hu**, **de**, **es**, **it**, **zh**, **ru**, **uk**.
 
-_Eszköz összevonja a gyakori feladatokat egyetlen parancssori felületbe, hogy a fejlesztők kevesebbet pápoljanak, többet dolgozzanak._
+Detection order:
+
+1. `--lang` / `-L`
+2. `D_LANG` environment variable
+3. `LC_ALL` → `LC_MESSAGES` → `LANG`
+4. macOS `AppleLocale`
+5. Fallback: English
+
+```bash
+d --lang hu
+d -L de ip
+D_LANG=zh d git --help
+```
+
+Help text, prompts, and command messages are all localized.
+
+## Command reference
+
+| Command | Description |
+|---------|-------------|
+| `d` / `d help` | Show help (same as `d --help`) |
+| `d version` | Print CLI version |
+| `d ip` | Print local (LAN) IP address |
+| `d push <message…>` | `git add -A` + commit + push current branch |
+| `d update` | Install latest version from GitHub Releases |
+| `d git setup` | Interactive git + GitHub repo setup via `gh` |
+| `d git fix` | Remove ignore-but-tracked files from the index |
+| `d git update` | Pull latest changes for the current branch |
+| `d gen hex [n]` | Random hex (`openssl rand -hex`, default `n=32`) |
+| `d gen base64 [n]` | Random base64 (`openssl rand -base64`, default `n=32`) |
+| `d macos start` | Apply initial macOS Finder / menu bar tweaks |
+| `--lang` / `-L` | Force UI language |
+| `--authors` | Print author name |
+| `--doc` | Print documentation URL |
+
+## Examples
+
+```bash
+# Everyday workflow
+d push fix typo in readme
+d git update
+d update
+
+# New project → GitHub
+cd my-app
+d git setup
+
+# Cleanup after editing .gitignore
+d git fix
+d push untrack ignored files
+
+# Utilities
+d ip
+d gen hex 64
+d macos start
+```
+
+## Development
+
+Requires a Rust toolchain ([rustup](https://rustup.rs)).
+
+```bash
+cargo build --release
+cargo run -- --help
+./build-pkg.sh          # builds d-installer.pkg for macOS
+```
+
+CLI parsing uses [`clap`](https://crates.io/crates/clap).
+
+## Info
+
+- **Version:** 1.0.0
+- **Author:** Dezső Benedek
+- **Repo / docs:** [github.com/DezBenedek/d](https://github.com/DezBenedek/d)
+- **License:** MIT
