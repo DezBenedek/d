@@ -28,6 +28,7 @@ d --help
 | `d push "üzenet"` | `git add -A` + commit + push az aktuális branch-re |
 | `d update` | A legújabb verzió letöltése és telepítése GitHub-ról |
 | `d git fix` | `.gitignore`-ban tiltott, de már trackelt fájlok eltávolítása a git indexből |
+| `d git setup` | Interaktív git + GitHub repo setup (`gh` CLI) |
 | `d git update` | Git-hez kapcsolódó frissítési művelet |
 | `d gen hex` | Véletlenszerű hex (`openssl rand -hex 32`) |
 | `d gen hex 64` | Hex megadott hosszal (`openssl rand -hex 64`) |
@@ -62,6 +63,12 @@ d update
 d git fix
 ```
 
+### Git + GitHub repo setup
+
+```bash
+d git setup
+```
+
 ### Hex / base64 generálása
 
 ```bash
@@ -88,7 +95,7 @@ cargo run -- --help
 
 ## Információk
 
-- **Verzió:** 0.4.3
+- **Verzió:** 0.4.4
 - **Szerző:** Dezső Benedek
 - **Dokumentáció:** [GitHub repo](https://github.com/DezBenedek/d)
 - **Licenc:** MIT

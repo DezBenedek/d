@@ -3,7 +3,7 @@ set -euo pipefail
 
 BINARY_NAME="d"
 IDENTIFIER="com.dezbenedek.d"
-VERSION="0.4.3"
+VERSION="0.4.4"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STAGE_DIR="$SCRIPT_DIR/pkg-root"
 OUTPUT_PKG="$SCRIPT_DIR/d-installer.pkg"

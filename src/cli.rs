@@ -27,7 +27,7 @@ pub enum Commands {
         #[arg(trailing_var_arg = true)]
         message: Vec<String>,
     },
-    /// Git-hez kapcsolódó segédparancsok (fix, update)
+    /// Git-hez kapcsolódó segédparancsok (fix, setup, update)
     Git {
         #[command(subcommand)]
         command: GitCommands,
@@ -48,6 +48,8 @@ pub enum Commands {
 pub enum GitCommands {
     /// A .gitignore által tiltott, de már trackelt fájlok eltávolítása a git indexből
     Fix,
+    /// Interaktív git + GitHub repo setup (gh CLI-vel)
+    Setup,
     /// git-hez kapcsolódó frissítési művelet
     Update,
 }

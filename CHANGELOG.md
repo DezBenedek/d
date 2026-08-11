@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.4] - 2026-08-11
+
+### Added
+- `d git setup` — interaktív git + GitHub repo setup (`gh` CLI-vel): repo létrehozás, config, org, meglévő repo felülírása backup branchel
+
 ## [0.4.3] - 2026-07-27
 
 ### Changed
