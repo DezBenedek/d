@@ -1,4 +1,4 @@
-use crate::i18n::{tr, trf, GEN_BYTES_ZERO, GEN_OPENSSL_FAIL, GEN_OPENSSL_START};
+use crate::i18n::{GEN_BYTES_ZERO, GEN_OPENSSL_FAIL, GEN_OPENSSL_START, tr, trf};
 use std::process::Command;
 
 pub enum Encoding {

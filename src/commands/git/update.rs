@@ -1,6 +1,6 @@
 use crate::i18n::{
-    tr, trf, ERR_EMPTY_BRANCH, ERR_EXIT_CODE, ERR_START_PROGRAM, GIT_PULL_BRANCH_ERR, GIT_PULL_FAIL,
-    GIT_PULL_FETCHING, GIT_PULL_OK,
+    ERR_EMPTY_BRANCH, ERR_EXIT_CODE, ERR_START_PROGRAM, GIT_PULL_BRANCH_ERR, GIT_PULL_FAIL,
+    GIT_PULL_FETCHING, GIT_PULL_OK, tr, trf,
 };
 use std::process::Command;
 
@@ -13,10 +13,7 @@ pub fn run() {
         }
     };
 
-    println!(
-        "{}",
-        trf(&GIT_PULL_FETCHING, &[("branch", &branch)])
-    );
+    println!("{}", trf(&GIT_PULL_FETCHING, &[("branch", &branch)]));
 
     if let Err(error) = run_git(&["pull", "origin", &branch]) {
         eprintln!("{}", trf(&GIT_PULL_FAIL, &[("error", &error)]));
@@ -27,15 +24,12 @@ pub fn run() {
 }
 
 fn run_git(args: &[&str]) -> Result<(), String> {
-    let status = Command::new("git")
-        .args(args)
-        .status()
-        .map_err(|error| {
-            trf(
-                &ERR_START_PROGRAM,
-                &[("program", "git"), ("error", &error.to_string())],
-            )
-        })?;
+    let status = Command::new("git").args(args).status().map_err(|error| {
+        trf(
+            &ERR_START_PROGRAM,
+            &[("program", "git"), ("error", &error.to_string())],
+        )
+    })?;
 
     if status.success() {
         Ok(())

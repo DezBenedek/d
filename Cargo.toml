@@ -1,10 +1,17 @@
 [package]
 name = "d"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2024"
-description = "d CLI"
+rust-version = "1.85"
+description = "A small, fast command-line toolkit for everyday developer tasks on macOS"
 authors = ["Dezső Benedek <benedek@dezso.hu>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/DezBenedek/d"
+homepage = "https://dcli.dezso.hu"
 documentation = "https://github.com/DezBenedek/d"
+keywords = ["cli", "git", "macos", "i18n"]
+categories = ["command-line-utilities", "development-tools"]
 
 [dependencies]
 clap = { version = "=4.4.18", features = ["derive"] }

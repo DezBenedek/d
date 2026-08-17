@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Prepare assets
+        run: |
+          cp target/release/d ./d
+          shasum -a 256 d | awk '{print $1"  d"}' > d.sha256
+          ./build-pkg.sh
+
+      - name: Publish GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            d \
+            d.sha256 \
+            d-installer.pkg \
+            --title "${{ github.ref_name }}" \
+            --notes-file CHANGELOG.md

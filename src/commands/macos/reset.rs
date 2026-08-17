@@ -1,7 +1,7 @@
 use super::util::{killall, run_defaults};
 use crate::i18n::{
-    DONE, MACOS_BATTERY, MACOS_HIDDEN, MACOS_HINT, MACOS_PATHBAR, MACOS_SET_ERR, MACOS_SET_OK,
-    MACOS_STATUSBAR, tr, trf,
+    DONE, MACOS_BATTERY, MACOS_HIDDEN, MACOS_PATHBAR, MACOS_SET_ERR, MACOS_SET_OK, MACOS_STATUSBAR,
+    tr, trf,
 };
 
 pub fn run() {
@@ -13,12 +13,12 @@ pub fn run() {
                 "com.apple.controlcenter",
                 "BatteryShowPercentage",
                 "-bool",
-                "true",
+                "false",
             ],
             tr(&MACOS_BATTERY),
         ),
         (
-            &["write", "com.apple.finder", "ShowPathbar", "-bool", "true"],
+            &["write", "com.apple.finder", "ShowPathbar", "-bool", "false"],
             tr(&MACOS_PATHBAR),
         ),
         (
@@ -27,7 +27,7 @@ pub fn run() {
                 "com.apple.finder",
                 "ShowStatusBar",
                 "-bool",
-                "true",
+                "false",
             ],
             tr(&MACOS_STATUSBAR),
         ),
@@ -37,7 +37,7 @@ pub fn run() {
                 "com.apple.finder",
                 "AppleShowAllFiles",
                 "-bool",
-                "true",
+                "false",
             ],
             tr(&MACOS_HIDDEN),
         ),
@@ -57,7 +57,5 @@ pub fn run() {
     killall("ControlCenter");
     killall("Finder");
 
-    println!();
     println!("{}", tr(&DONE));
-    println!("{}", tr(&MACOS_HINT));
 }

@@ -1,3 +1,7 @@
 /target
 /release
-Cargo.lock
+/pkg-root
+.DS_Store
+**/.DS_Store
+*.pkg
+d.sha256

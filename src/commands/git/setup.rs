@@ -1,12 +1,13 @@
 use crate::i18n::{
-    is_no, is_private, is_public, is_yes, tr, trf, CANCELLED, ENTER_VISIBILITY, ENTER_YN,
-    ERR_COMMAND_FAILED, ERR_EMPTY_BRANCH, ERR_EXIT_CODE, ERR_START_PROGRAM, ERR_STDIN_READ,
-    ERR_STDOUT_FLUSH, FIELD_REQUIRED, SETUP_BACKUP_BRANCH, SETUP_BACKUP_PUSHED, SETUP_BREW_MISSING,
-    SETUP_CREATE_REPO, SETUP_DEFAULT_BRANCH_ERR, SETUP_DONE_REPO, SETUP_FAIL, SETUP_FETCH_BACKUP,
-    SETUP_FORCE_PUSH, SETUP_GH_AUTH_FAIL, SETUP_GH_INSTALLED, SETUP_GH_INSTALLING, SETUP_GH_LOGIN,
-    SETUP_GH_MISSING, SETUP_GH_OK, SETUP_GH_PATH, SETUP_GH_REQUIRED, SETUP_GH_USER_EMPTY,
-    SETUP_GH_USER_ERR, SETUP_GIT_INIT, SETUP_INSTALL_GH, SETUP_NEED_IDENTITY, SETUP_NO_BACKUP,
-    SETUP_ORG, SETUP_OVERWRITE, SETUP_REMOTE_EXISTS, SETUP_REPO_NAME, SETUP_VISIBILITY,
+    CANCELLED, ENTER_VISIBILITY, ENTER_YN, ERR_COMMAND_FAILED, ERR_EMPTY_BRANCH, ERR_EXIT_CODE,
+    ERR_START_PROGRAM, ERR_STDIN_READ, ERR_STDOUT_FLUSH, FIELD_REQUIRED, SETUP_BACKUP_BRANCH,
+    SETUP_BACKUP_PUSHED, SETUP_BREW_MISSING, SETUP_CREATE_REPO, SETUP_DEFAULT_BRANCH_ERR,
+    SETUP_DONE_REPO, SETUP_FAIL, SETUP_FETCH_BACKUP, SETUP_FORCE_PUSH, SETUP_GH_AUTH_FAIL,
+    SETUP_GH_INSTALLED, SETUP_GH_INSTALLING, SETUP_GH_LOGIN, SETUP_GH_MISSING, SETUP_GH_OK,
+    SETUP_GH_PATH, SETUP_GH_REQUIRED, SETUP_GH_USER_EMPTY, SETUP_GH_USER_ERR, SETUP_GIT_INIT,
+    SETUP_INSTALL_GH, SETUP_NEED_IDENTITY, SETUP_NO_BACKUP, SETUP_ORG, SETUP_OVERWRITE,
+    SETUP_REMOTE_EXISTS, SETUP_REPO_NAME, SETUP_VISIBILITY, is_no, is_private, is_public, is_yes,
+    tr, trf,
 };
 use std::io::{self, Write};
 use std::process::{Command, Stdio};
@@ -37,11 +38,7 @@ fn setup() -> Result<(), String> {
 
     ensure_gh_auth()?;
 
-    let owner = if org.is_empty() {
-        gh_username()?
-    } else {
-        org
-    };
+    let owner = if org.is_empty() { gh_username()? } else { org };
     let full_name = format!("{owner}/{repo_name}");
 
     ensure_git_repo()?;
@@ -133,10 +130,7 @@ fn ensure_initial_commit() -> Result<(), String> {
         })?;
 
     if !status.success() {
-        run_command(
-            "git",
-            &["commit", "--allow-empty", "-m", "Initial commit"],
-        )?;
+        run_command("git", &["commit", "--allow-empty", "-m", "Initial commit"])?;
     }
 
     Ok(())
@@ -436,15 +430,12 @@ fn prompt(message: &str) -> Result<String, String> {
 }
 
 fn run_command(program: &str, args: &[&str]) -> Result<(), String> {
-    let status = Command::new(program)
-        .args(args)
-        .status()
-        .map_err(|error| {
-            trf(
-                &ERR_START_PROGRAM,
-                &[("program", program), ("error", &error.to_string())],
-            )
-        })?;
+    let status = Command::new(program).args(args).status().map_err(|error| {
+        trf(
+            &ERR_START_PROGRAM,
+            &[("program", program), ("error", &error.to_string())],
+        )
+    })?;
 
     if status.success() {
         Ok(())

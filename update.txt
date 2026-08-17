@@ -1,7 +1,8 @@
 # d
 The ultimate CLI for MacOS
 
-commands:
-gh release create v1.0.0 target/release/d d-installer.pkg --notes-file CHANGELOG.md
-cargo build --release
-./build-pkg.sh
+Release (CI also does this on v* tags):
+  cargo build --release
+  ./build-pkg.sh
+  shasum -a 256 target/release/d | awk '{print $1"  d"}' > d.sha256
+  gh release create v1.1.0 target/release/d d.sha256 d-installer.pkg --notes-file CHANGELOG.md

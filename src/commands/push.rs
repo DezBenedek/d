@@ -1,6 +1,6 @@
 use crate::i18n::{
-    tr, trf, ERR_EMPTY_BRANCH, ERR_EXIT_CODE, ERR_START_PROGRAM, PUSH_ADD_FAIL, PUSH_BRANCH_ERR,
-    PUSH_COMMIT_WARN, PUSH_FAIL, PUSH_NEED_MSG,
+    ERR_EMPTY_BRANCH, ERR_EXIT_CODE, ERR_START_PROGRAM, PUSH_ADD_FAIL, PUSH_BRANCH_ERR,
+    PUSH_COMMIT_WARN, PUSH_FAIL, PUSH_NEED_MSG, tr, trf,
 };
 use std::process::Command;
 
@@ -36,15 +36,12 @@ pub fn run(message_words: Vec<String>) {
 }
 
 fn run_git(args: &[&str]) -> Result<(), String> {
-    let status = Command::new("git")
-        .args(args)
-        .status()
-        .map_err(|error| {
-            trf(
-                &ERR_START_PROGRAM,
-                &[("program", "git"), ("error", &error.to_string())],
-            )
-        })?;
+    let status = Command::new("git").args(args).status().map_err(|error| {
+        trf(
+            &ERR_START_PROGRAM,
+            &[("program", "git"), ("error", &error.to_string())],
+        )
+    })?;
 
     if status.success() {
         Ok(())

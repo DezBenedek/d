@@ -38,12 +38,12 @@ pub enum Commands {
         #[command(subcommand)]
         command: GitCommands,
     },
-    /// macOS-specific settings (start, more later)
+    /// macOS-specific settings (start, dock, flushdns, reset)
     Macos {
         #[command(subcommand)]
         command: MacosCommands,
     },
-    /// Generators (hex, base64)
+    /// Generators (hex, base64, uuid, password)
     Gen {
         #[command(subcommand)]
         command: GenCommands,
@@ -64,6 +64,12 @@ pub enum GitCommands {
 pub enum MacosCommands {
     /// Initial macOS tweaks: battery %, Finder path/status bar, hidden files
     Start,
+    /// Auto-hide the Dock
+    Dock,
+    /// Flush the DNS cache
+    Flushdns,
+    /// Undo the `d macos start` tweaks
+    Reset,
 }
 
 #[derive(Subcommand)]
@@ -79,5 +85,13 @@ pub enum GenCommands {
         /// Number of bytes (default: 32)
         #[arg(default_value_t = 32)]
         bytes: u32,
+    },
+    /// Generate a random UUID v4
+    Uuid,
+    /// Generate a random password
+    Password {
+        /// Password length (default: 24)
+        #[arg(default_value_t = 24)]
+        length: u32,
     },
 }

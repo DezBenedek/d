@@ -187,7 +187,7 @@ pub const CMD_GIT_SETUP: Catalog = cat! {
 
 pub const CMD_GIT_UPDATE: Catalog = cat! {
     en: "Pull the latest changes for the current branch",
-    hu: "Git-hez kapcsolódó frissítési művelet",
+    hu: "Az aktuális branch legfrissebb változásainak letöltése",
     de: "Neueste Änderungen für den aktuellen Branch holen",
     es: "Traer los últimos cambios de la rama actual",
     it: "Scarica gli ultimi cambiamenti del branch corrente",
@@ -197,14 +197,14 @@ pub const CMD_GIT_UPDATE: Catalog = cat! {
 };
 
 pub const CMD_MACOS: Catalog = cat! {
-    en: "macOS-specific settings (start, more later)",
-    hu: "macOS-specifikus beállítások (start, többi később)",
-    de: "macOS-spezifische Einstellungen (start, weitere folgen)",
-    es: "Ajustes específicos de macOS (start, más adelante)",
-    it: "Impostazioni specifiche di macOS (start, altre in seguito)",
-    zh: "macOS 专用设置（start，后续更多）",
-    ru: "Настройки для macOS (start, позже появятся другие)",
-    uk: "Налаштування для macOS (start, згодом з'являться інші)",
+    en: "macOS-specific settings (start, dock, flushdns, reset)",
+    hu: "macOS-specifikus beállítások (start, dock, flushdns, reset)",
+    de: "macOS-spezifische Einstellungen (start, dock, flushdns, reset)",
+    es: "Ajustes específicos de macOS (start, dock, flushdns, reset)",
+    it: "Impostazioni specifiche di macOS (start, dock, flushdns, reset)",
+    zh: "macOS 专用设置（start、dock、flushdns、reset）",
+    ru: "Настройки для macOS (start, dock, flushdns, reset)",
+    uk: "Налаштування для macOS (start, dock, flushdns, reset)",
 };
 
 pub const CMD_MACOS_START: Catalog = cat! {
@@ -218,15 +218,48 @@ pub const CMD_MACOS_START: Catalog = cat! {
     uk: "Початкові налаштування macOS: % батареї, шлях/статус Finder, приховані файли",
 };
 
+pub const CMD_MACOS_DOCK: Catalog = cat! {
+    en: "Auto-hide the Dock",
+    hu: "Dock automatikus elrejtése",
+    de: "Dock automatisch ausblenden",
+    es: "Ocultar automáticamente el Dock",
+    it: "Nascondi automaticamente il Dock",
+    zh: "自动隐藏程序坞",
+    ru: "Автоскрытие Dock",
+    uk: "Автоприховування Dock",
+};
+
+pub const CMD_MACOS_FLUSHDNS: Catalog = cat! {
+    en: "Flush the DNS cache",
+    hu: "DNS-gyorsítótár ürítése",
+    de: "DNS-Cache leeren",
+    es: "Vaciar la caché DNS",
+    it: "Svuota la cache DNS",
+    zh: "刷新 DNS 缓存",
+    ru: "Очистить DNS-кэш",
+    uk: "Очистити DNS-кеш",
+};
+
+pub const CMD_MACOS_RESET: Catalog = cat! {
+    en: "Undo the `d macos start` tweaks",
+    hu: "A `d macos start` beállításainak visszavonása",
+    de: "Die `d macos start`-Änderungen rückgängig machen",
+    es: "Deshacer los ajustes de `d macos start`",
+    it: "Annulla le modifiche di `d macos start`",
+    zh: "撤销 `d macos start` 的设置",
+    ru: "Отменить настройки `d macos start`",
+    uk: "Скасувати налаштування `d macos start`",
+};
+
 pub const CMD_GEN: Catalog = cat! {
-    en: "Generators (hex, base64)",
-    hu: "Generáló segédparancsok (hex, base64)",
-    de: "Generatoren (hex, base64)",
-    es: "Generadores (hex, base64)",
-    it: "Generatori (hex, base64)",
-    zh: "生成器（hex、base64）",
-    ru: "Генераторы (hex, base64)",
-    uk: "Генератори (hex, base64)",
+    en: "Generators (hex, base64, uuid, password)",
+    hu: "Generáló segédparancsok (hex, base64, uuid, password)",
+    de: "Generatoren (hex, base64, uuid, password)",
+    es: "Generadores (hex, base64, uuid, password)",
+    it: "Generatori (hex, base64, uuid, password)",
+    zh: "生成器（hex、base64、uuid、password）",
+    ru: "Генераторы (hex, base64, uuid, password)",
+    uk: "Генератори (hex, base64, uuid, password)",
 };
 
 pub const CMD_GEN_HEX: Catalog = cat! {
@@ -260,6 +293,39 @@ pub const CMD_GEN_BYTES: Catalog = cat! {
     zh: "字节数（默认：32）",
     ru: "Количество байт (по умолчанию: 32)",
     uk: "Кількість байтів (за замовчуванням: 32)",
+};
+
+pub const CMD_GEN_UUID: Catalog = cat! {
+    en: "Generate a random UUID v4",
+    hu: "Véletlenszerű UUID v4 generálása",
+    de: "Zufällige UUID v4 erzeugen",
+    es: "Generar un UUID v4 aleatorio",
+    it: "Genera un UUID v4 casuale",
+    zh: "生成随机 UUID v4",
+    ru: "Сгенерировать случайный UUID v4",
+    uk: "Згенерувати випадковий UUID v4",
+};
+
+pub const CMD_GEN_PASSWORD: Catalog = cat! {
+    en: "Generate a random password",
+    hu: "Véletlenszerű jelszó generálása",
+    de: "Zufälliges Passwort erzeugen",
+    es: "Generar una contraseña aleatoria",
+    it: "Genera una password casuale",
+    zh: "生成随机密码",
+    ru: "Сгенерировать случайный пароль",
+    uk: "Згенерувати випадковий пароль",
+};
+
+pub const CMD_GEN_PASSWORD_LEN: Catalog = cat! {
+    en: "Password length (default: 24)",
+    hu: "Jelszó hossza (alapértelmezett: 24)",
+    de: "Passwortlänge (Standard: 24)",
+    es: "Longitud de la contraseña (predeterminado: 24)",
+    it: "Lunghezza della password (predefinito: 24)",
+    zh: "密码长度（默认：24）",
+    ru: "Длина пароля (по умолчанию: 24)",
+    uk: "Довжина пароля (за замовчуванням: 24)",
 };
 
 // —— Common ————————————————————————————————————————————————
@@ -633,6 +699,127 @@ pub const UPDATE_REPLACE_FAIL: Catalog = cat! {
     uk: "не вдалося замінити запущений бінарник (права доступу?): {error}",
 };
 
+pub const UPDATE_UP_TO_DATE: Catalog = cat! {
+    en: "Already up to date (d {version}).",
+    hu: "Már a legfrissebb verzió van telepítve (d {version}).",
+    de: "Bereits aktuell (d {version}).",
+    es: "Ya está actualizado (d {version}).",
+    it: "Già aggiornato (d {version}).",
+    zh: "已是最新版本（d {version}）。",
+    ru: "Уже установлена последняя версия (d {version}).",
+    uk: "Уже встановлено найновішу версію (d {version}).",
+};
+
+pub const UPDATE_NEW_VERSION: Catalog = cat! {
+    en: "Update available: {current} → {latest}",
+    hu: "Elérhető frissítés: {current} → {latest}",
+    de: "Update verfügbar: {current} → {latest}",
+    es: "Actualización disponible: {current} → {latest}",
+    it: "Aggiornamento disponibile: {current} → {latest}",
+    zh: "有可用更新：{current} → {latest}",
+    ru: "Доступно обновление: {current} → {latest}",
+    uk: "Доступне оновлення: {current} → {latest}",
+};
+
+pub const UPDATE_NO_TAG: Catalog = cat! {
+    en: "the latest release has no tag name",
+    hu: "a legújabb kiadásnak nincs tag neve",
+    de: "die neueste Version hat keinen Tag-Namen",
+    es: "la última release no tiene nombre de etiqueta",
+    it: "l'ultima release non ha un nome di tag",
+    zh: "最新发行版没有标签名",
+    ru: "у последнего релиза нет имени тега",
+    uk: "у найновішого релізу немає назви тега",
+};
+
+pub const UPDATE_CHECKSUM_MISSING: Catalog = cat! {
+    en: "the latest release has no SHA-256 checksum file (d.sha256)",
+    hu: "a legújabb kiadáshoz nincs SHA-256 ellenőrzőösszeg (d.sha256)",
+    de: "der neuesten Version fehlt die SHA-256-Prüfsummendatei (d.sha256)",
+    es: "la última release no tiene archivo de checksum SHA-256 (d.sha256)",
+    it: "l'ultima release non ha un file checksum SHA-256 (d.sha256)",
+    zh: "最新发行版没有 SHA-256 校验文件（d.sha256）",
+    ru: "в последнем релизе нет файла контрольной суммы SHA-256 (d.sha256)",
+    uk: "у найновішому релізі немає файлу контрольної суми SHA-256 (d.sha256)",
+};
+
+pub const UPDATE_CHECKSUM_PARSE: Catalog = cat! {
+    en: "failed to read checksum file: {error}",
+    hu: "nem sikerült beolvasni az ellenőrzőösszeg-fájlt: {error}",
+    de: "Prüfsummendatei konnte nicht gelesen werden: {error}",
+    es: "no se pudo leer el archivo de checksum: {error}",
+    it: "impossibile leggere il file checksum: {error}",
+    zh: "无法读取校验文件：{error}",
+    ru: "не удалось прочитать файл контрольной суммы: {error}",
+    uk: "не вдалося прочитати файл контрольної суми: {error}",
+};
+
+pub const UPDATE_CHECKSUM_FORMAT: Catalog = cat! {
+    en: "checksum file has no SHA-256 hash for '{name}'",
+    hu: "az ellenőrzőösszeg-fájlban nincs SHA-256 hash a(z) '{name}' fájlhoz",
+    de: "Prüfsummendatei enthält keinen SHA-256-Hash für '{name}'",
+    es: "el archivo de checksum no tiene hash SHA-256 para '{name}'",
+    it: "il file checksum non ha un hash SHA-256 per '{name}'",
+    zh: "校验文件中没有 '{name}' 的 SHA-256 哈希",
+    ru: "в файле контрольной суммы нет SHA-256 для '{name}'",
+    uk: "у файлі контрольної суми немає SHA-256 для '{name}'",
+};
+
+pub const UPDATE_CHECKSUM_MISMATCH: Catalog = cat! {
+    en: "checksum mismatch (expected {expected}, got {actual})",
+    hu: "az ellenőrzőösszeg nem egyezik (várt: {expected}, kapott: {actual})",
+    de: "Prüfsumme stimmt nicht (erwartet {expected}, erhalten {actual})",
+    es: "el checksum no coincide (esperado {expected}, obtenido {actual})",
+    it: "checksum non corrispondente (atteso {expected}, ottenuto {actual})",
+    zh: "校验和不匹配（期望 {expected}，实际 {actual}）",
+    ru: "контрольная сумма не совпадает (ожидалось {expected}, получено {actual})",
+    uk: "контрольна сума не збігається (очікувалось {expected}, отримано {actual})",
+};
+
+pub const UPDATE_SHA256_START: Catalog = cat! {
+    en: "failed to start shasum: {error}",
+    hu: "nem sikerült elindítani a shasum-ot: {error}",
+    de: "shasum konnte nicht gestartet werden: {error}",
+    es: "no se pudo iniciar shasum: {error}",
+    it: "impossibile avviare shasum: {error}",
+    zh: "无法启动 shasum：{error}",
+    ru: "не удалось запустить shasum: {error}",
+    uk: "не вдалося запустити shasum: {error}",
+};
+
+pub const UPDATE_SHA256_FAIL: Catalog = cat! {
+    en: "failed to compute SHA-256 of the downloaded binary",
+    hu: "nem sikerült kiszámolni a letöltött bináris SHA-256 hash-ét",
+    de: "SHA-256 der heruntergeladenen Binary konnte nicht berechnet werden",
+    es: "no se pudo calcular el SHA-256 del binario descargado",
+    it: "impossibile calcolare lo SHA-256 del binario scaricato",
+    zh: "无法计算已下载二进制文件的 SHA-256",
+    ru: "не удалось вычислить SHA-256 скачанного бинарника",
+    uk: "не вдалося обчислити SHA-256 завантаженого бінарника",
+};
+
+pub const UPDATE_SUDO: Catalog = cat! {
+    en: "Permission denied — retrying with sudo...",
+    hu: "Nincs jogosultság — újrapróbálás sudo-val...",
+    de: "Keine Berechtigung — erneuter Versuch mit sudo...",
+    es: "Permiso denegado — reintentando con sudo...",
+    it: "Permesso negato — nuovo tentativo con sudo...",
+    zh: "权限不足 — 正在使用 sudo 重试...",
+    ru: "Нет прав — повтор с sudo...",
+    uk: "Немає прав — повтор із sudo...",
+};
+
+pub const UPDATE_SUDO_FAIL: Catalog = cat! {
+    en: "sudo replace failed: {error}",
+    hu: "a sudo-s csere sikertelen: {error}",
+    de: "sudo-Ersetzung fehlgeschlagen: {error}",
+    es: "el reemplazo con sudo falló: {error}",
+    it: "sostituzione con sudo non riuscita: {error}",
+    zh: "sudo 替换失败：{error}",
+    ru: "замена через sudo не удалась: {error}",
+    uk: "заміна через sudo не вдалася: {error}",
+};
+
 // —— Git fix / update ————————————————————————————————————————————————
 
 pub const GIT_FIX_LIST_ERR: Catalog = cat! {
@@ -802,6 +989,28 @@ pub const MACOS_SET_OK: Catalog = cat! {
     uk: "Налаштовано: {label}",
 };
 
+pub const MACOS_DOCK: Catalog = cat! {
+    en: "Dock auto-hide",
+    hu: "Dock automatikus elrejtése",
+    de: "Dock automatisch ausblenden",
+    es: "Ocultar automáticamente el Dock",
+    it: "Nascondi automaticamente il Dock",
+    zh: "程序坞自动隐藏",
+    ru: "Автоскрытие Dock",
+    uk: "Автоприховування Dock",
+};
+
+pub const MACOS_FLUSHDNS_OK: Catalog = cat! {
+    en: "DNS cache flushed.",
+    hu: "DNS-gyorsítótár ürítve.",
+    de: "DNS-Cache geleert.",
+    es: "Caché DNS vaciada.",
+    it: "Cache DNS svuotata.",
+    zh: "DNS 缓存已刷新。",
+    ru: "DNS-кэш очищен.",
+    uk: "DNS-кеш очищено.",
+};
+
 pub const MACOS_HINT: Catalog = cat! {
     en: "Full folder size in Finder: open a folder, Cmd+J, enable 'Calculate all sizes', then 'Use as Defaults'.",
     hu: "Teljes mappaméret Finderben: nyiss meg egy mappát, Cmd+J, pipáld be a 'Calculate all sizes'-t, majd 'Use as Defaults'.",
@@ -846,6 +1055,17 @@ pub const GEN_OPENSSL_START: Catalog = cat! {
     zh: "无法启动 openssl：{error}",
     ru: "Не удалось запустить openssl: {error}",
     uk: "Не вдалося запустити openssl: {error}",
+};
+
+pub const GEN_RAND_SHORT: Catalog = cat! {
+    en: "openssl rand returned too few bytes",
+    hu: "az openssl rand túl kevés byte-ot adott vissza",
+    de: "openssl rand hat zu wenige Bytes zurückgegeben",
+    es: "openssl rand devolvió demasiados pocos bytes",
+    it: "openssl rand ha restituito troppi pochi byte",
+    zh: "openssl rand 返回的字节太少",
+    ru: "openssl rand вернул слишком мало байт",
+    uk: "openssl rand повернув замало байтів",
 };
 
 // —— Git setup ————————————————————————————————————————————————

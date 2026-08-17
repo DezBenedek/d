@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.1.0] - 2026-08-16
+
+### Added
+- Unit tests for language parsing, yes/no/visibility helpers, `trf` placeholders, semver/checksum parsing, UUID v4 and password generation
+- CI workflow (fmt, clippy, test, release build) on `stable` and MSRV `1.85`
+- Release workflow: tagged `v*` builds publish `d`, `d.sha256`, and `d-installer.pkg` to GitHub Releases
+- `d update` skips download when already current, verifies SHA-256, and retries with `sudo` on permission errors
+- `d gen uuid` and `d gen password [n]`
+- `d macos dock`, `d macos flushdns`, `d macos reset`
+- MIT `LICENSE`, Cargo.toml crate metadata, `rust-version = "1.85"`, `rust-toolchain.toml`
+- `Cargo.lock` committed for reproducible builds
+
+### Changed
+- Hungarian `d git update` help text now matches the other languages
+- `.gitignore` ignores `.DS_Store` and `*.pkg`; installer package is no longer versioned
+
+### Fixed
+- `rustfmt` formatting and clippy `collapsible_if` warning
+
 ## [1.0.0] - 2026-08-11
 
 ### Added

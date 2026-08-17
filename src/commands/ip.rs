@@ -1,4 +1,4 @@
-use crate::i18n::{trf, IP_ERR, IP_OK};
+use crate::i18n::{IP_ERR, IP_OK, trf};
 use std::net::UdpSocket;
 
 pub fn run() {
