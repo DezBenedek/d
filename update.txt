@@ -5,4 +5,4 @@ Release (CI also does this on v* tags):
   cargo build --release
   ./build-pkg.sh
   shasum -a 256 target/release/d | awk '{print $1"  d"}' > d.sha256
-  gh release create v1.2.0 target/release/d d.sha256 d-installer.pkg --notes-file CHANGELOG.md
+  gh release create v1.3.0 target/release/d d.sha256 d-installer.pkg --notes-file CHANGELOG.md

@@ -302,6 +302,19 @@ mod tests {
             YT_DISCLAIMER.get(Lang::En),
             "For educational purposes only."
         );
-        assert_eq!(YT_DISCLAIMER.get(Lang::Hu), "Oktatási célokat szolgál.");
+        assert_eq!(
+            YT_DISCLAIMER.get(Lang::Hu),
+            "For educational purposes only."
+        );
+        assert!(
+            CMD_DOWNLOAD_YOUTUBE
+                .get(Lang::En)
+                .contains("For educational purposes only.")
+        );
+        assert!(
+            CMD_DOWNLOAD_YOUTUBE
+                .get(Lang::Hu)
+                .contains("For educational purposes only.")
+        );
     }
 }

@@ -39,6 +39,7 @@ fn main() {
         Some(Commands::Macos { command }) => commands::macos::run(command),
         Some(Commands::Gen { command }) => commands::generate::run(command),
         Some(Commands::Download { command }) => commands::download::run(command),
+        Some(Commands::Install { command }) => commands::install::run(command),
         None => i18n::print_help(),
     }
 }

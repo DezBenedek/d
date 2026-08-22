@@ -1,11 +1,13 @@
 use clap::Command;
 
 use super::{
-    APP_ABOUT, CMD_DOWNLOAD, CMD_DOWNLOAD_YOUTUBE, CMD_DOWNLOAD_YOUTUBE_URL, CMD_GEN,
-    CMD_GEN_BASE64, CMD_GEN_BYTES, CMD_GEN_HEX, CMD_GEN_PASSWORD, CMD_GEN_PASSWORD_LEN,
-    CMD_GEN_UUID, CMD_GIT, CMD_GIT_FIX, CMD_GIT_SETUP, CMD_GIT_UPDATE, CMD_IP, CMD_MACOS,
-    CMD_MACOS_DOCK, CMD_MACOS_FLUSHDNS, CMD_MACOS_RESET, CMD_MACOS_START, CMD_PUSH, CMD_PUSH_MSG,
-    CMD_UPDATE, CMD_VERSION, FLAG_AUTHORS, FLAG_DOC, FLAG_LANG, tr,
+    APP_ABOUT, CMD_DOWNLOAD, CMD_DOWNLOAD_AUDIO_QUALITY, CMD_DOWNLOAD_MUSIC,
+    CMD_DOWNLOAD_MUSIC_URL, CMD_DOWNLOAD_VIDEO_QUALITY, CMD_DOWNLOAD_YOUTUBE,
+    CMD_DOWNLOAD_YOUTUBE_URL, CMD_GEN, CMD_GEN_BASE64, CMD_GEN_BYTES, CMD_GEN_HEX,
+    CMD_GEN_PASSWORD, CMD_GEN_PASSWORD_LEN, CMD_GEN_UUID, CMD_GIT, CMD_GIT_FIX, CMD_GIT_SETUP,
+    CMD_GIT_UPDATE, CMD_INSTALL, CMD_INSTALL_YT_DLP, CMD_IP, CMD_MACOS, CMD_MACOS_DOCK,
+    CMD_MACOS_FLUSHDNS, CMD_MACOS_RESET, CMD_MACOS_START, CMD_PUSH, CMD_PUSH_MSG, CMD_UPDATE,
+    CMD_VERSION, FLAG_AUTHORS, FLAG_DOC, FLAG_LANG, tr,
 };
 
 pub fn apply_translations(cmd: Command) -> Command {
@@ -50,10 +52,21 @@ pub fn apply_translations(cmd: Command) -> Command {
                 })
         })
         .mut_subcommand("download", |c| {
-            c.about(tr(&CMD_DOWNLOAD)).mut_subcommand("youtube", |c| {
-                c.about(tr(&CMD_DOWNLOAD_YOUTUBE))
-                    .mut_arg("url", |arg| arg.help(tr(&CMD_DOWNLOAD_YOUTUBE_URL)))
-            })
+            c.about(tr(&CMD_DOWNLOAD))
+                .mut_subcommand("youtube", |c| {
+                    c.about(tr(&CMD_DOWNLOAD_YOUTUBE))
+                        .mut_arg("url", |arg| arg.help(tr(&CMD_DOWNLOAD_YOUTUBE_URL)))
+                        .mut_arg("quality", |arg| arg.help(tr(&CMD_DOWNLOAD_VIDEO_QUALITY)))
+                })
+                .mut_subcommand("music", |c| {
+                    c.about(tr(&CMD_DOWNLOAD_MUSIC))
+                        .mut_arg("url", |arg| arg.help(tr(&CMD_DOWNLOAD_MUSIC_URL)))
+                        .mut_arg("quality", |arg| arg.help(tr(&CMD_DOWNLOAD_AUDIO_QUALITY)))
+                })
+        })
+        .mut_subcommand("install", |c| {
+            c.about(tr(&CMD_INSTALL))
+                .mut_subcommand("yt-dlp", |c| c.about(tr(&CMD_INSTALL_YT_DLP)))
         })
 }
 

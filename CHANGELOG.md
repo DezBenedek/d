@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.3.0] - 2026-08-22
+
+### Added
+- `d install yt-dlp` — installs `yt-dlp` and `ffmpeg` via Homebrew with no prompt
+- `d download youtube` auto-installs the same tools if they are missing
+- Video quality picker for `d download youtube`: 270p, 480p, 720p, 1080p, 1440p (`--quality`)
+- `d download music` — audio from YouTube, YouTube Music, or Spotify (128k–320k; Spotify via `spotdl`/`pipx`)
+
+### Changed
+- YouTube help, README, and runtime disclaimer are always English: **For educational purposes only.**
+
 ## [1.2.0] - 2026-08-22
 
 ### Added

@@ -8,6 +8,7 @@ Instead of juggling several one-off scripts and long git/gh invocations, `d` wra
 
 - **One-shot commit & push** — `d push your message here`
 - **Interactive GitHub repo setup** — create or overwrite a repo with backup of old code
+- **YouTube / music download** — `d download youtube` and `d download music` (**For educational purposes only.**); `d install yt-dlp` if you want the tools first
 - **Self-updating binary** — `d update` pulls the latest GitHub release (version check + SHA-256)
 - **Multilingual UI** — auto-detects your system language (English by default)
 
@@ -88,13 +89,39 @@ d macos flushdns   # flush DNS cache (sudo)
 d macos reset      # undo `d macos start`
 ```
 
-### YouTube download (educational)
+### YouTube download
 
-Downloads a YouTube video with `yt-dlp` (installs it via Homebrew if needed). **For educational purposes only.** After the URL, a native macOS folder picker asks where to save; the filename comes from the video title.
+**For educational purposes only.**
+
+Downloads a YouTube video with `yt-dlp`. After the URL you pick quality (**270p**, **480p**, **720p**, **1080p**, **1440p**; default 1080p), then a native macOS folder picker. The filename comes from the video title.
+
+Install `yt-dlp` and `ffmpeg` in one step (Homebrew, no prompt):
+
+```bash
+d install yt-dlp
+```
+
+`d download youtube` installs them the same way if they are missing.
 
 ```bash
 d download youtube
+d download youtube --quality 720p
 d download youtube https://www.youtube.com/watch?v=...
+```
+
+### Music download
+
+**For educational purposes only.**
+
+Downloads audio as MP3 from **YouTube**, **YouTube Music**, or **Spotify** links. After the URL you pick bitrate (**128k**, **192k**, **256k**, **320k**; default 320k), then the folder picker.
+
+Spotify cannot be ripped from Spotify’s own files; `spotdl` matches the track and downloads it from YouTube (installed automatically with `pipx` if needed). `d download music` also installs `yt-dlp` / `ffmpeg` via Homebrew when missing.
+
+```bash
+d download music
+d download music --quality 320k
+d download music https://music.youtube.com/watch?v=...
+d download music https://open.spotify.com/track/...
 ```
 
 ### Multilingual UI
@@ -137,7 +164,9 @@ Help text, prompts, and command messages are all localized.
 | `d macos dock` | Auto-hide the Dock |
 | `d macos flushdns` | Flush the DNS cache |
 | `d macos reset` | Undo `d macos start` |
-| `d download youtube [url]` | Download a YouTube video (educational; native folder picker) |
+| `d install yt-dlp` | Install yt-dlp and ffmpeg via Homebrew |
+| `d download youtube [url]` | Download a YouTube video (270p–1440p). For educational purposes only. |
+| `d download music [url]` | Download audio from YouTube / YouTube Music / Spotify (128k–320k). For educational purposes only. |
 | `--lang` / `-L` | Force UI language |
 | `--authors` | Print author name |
 | `--doc` | Print documentation URL |
@@ -164,7 +193,9 @@ d gen hex 64
 d gen uuid
 d gen password 32
 d macos start
+d install yt-dlp
 d download youtube
+d download music
 ```
 
 ## Development
@@ -186,7 +217,7 @@ CLI parsing uses [`clap`](https://crates.io/crates/clap).
 
 ## Info
 
-- **Version:** 1.2.0
+- **Version:** 1.3.0
 - **MSRV:** 1.85
 - **Author:** Dezső Benedek
 - **Repo / docs:** [github.com/DezBenedek/d](https://github.com/DezBenedek/d)

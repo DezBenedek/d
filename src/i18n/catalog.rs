@@ -329,25 +329,25 @@ pub const CMD_GEN_PASSWORD_LEN: Catalog = cat! {
 };
 
 pub const CMD_DOWNLOAD: Catalog = cat! {
-    en: "Download helpers (youtube)",
-    hu: "Letöltő parancsok (youtube)",
-    de: "Download-Befehle (youtube)",
-    es: "Comandos de descarga (youtube)",
-    it: "Comandi di download (youtube)",
-    zh: "下载命令（youtube）",
-    ru: "Команды загрузки (youtube)",
-    uk: "Команди завантаження (youtube)",
+    en: "Download helpers (youtube, music) — For educational purposes only.",
+    hu: "Letöltő parancsok (youtube, music) — For educational purposes only.",
+    de: "Download-Befehle (youtube, music) — For educational purposes only.",
+    es: "Comandos de descarga (youtube, music) — For educational purposes only.",
+    it: "Comandi di download (youtube, music) — For educational purposes only.",
+    zh: "下载命令（youtube、music）— For educational purposes only.",
+    ru: "Команды загрузки (youtube, music) — For educational purposes only.",
+    uk: "Команди завантаження (youtube, music) — For educational purposes only.",
 };
 
 pub const CMD_DOWNLOAD_YOUTUBE: Catalog = cat! {
-    en: "Download a YouTube video (educational purposes)",
-    hu: "YouTube-videó letöltése (oktatási célokra)",
-    de: "YouTube-Video herunterladen (zu Bildungszwecken)",
-    es: "Descargar un vídeo de YouTube (fines educativos)",
-    it: "Scarica un video di YouTube (scopi educativi)",
-    zh: "下载 YouTube 视频（仅教育用途）",
-    ru: "Скачать видео с YouTube (в образовательных целях)",
-    uk: "Завантажити відео з YouTube (з освітньою метою)",
+    en: "Download a YouTube video. For educational purposes only.",
+    hu: "YouTube-videó letöltése. For educational purposes only.",
+    de: "YouTube-Video herunterladen. For educational purposes only.",
+    es: "Descargar un vídeo de YouTube. For educational purposes only.",
+    it: "Scarica un video di YouTube. For educational purposes only.",
+    zh: "下载 YouTube 视频。For educational purposes only.",
+    ru: "Скачать видео с YouTube. For educational purposes only.",
+    uk: "Завантажити відео з YouTube. For educational purposes only.",
 };
 
 pub const CMD_DOWNLOAD_YOUTUBE_URL: Catalog = cat! {
@@ -359,6 +359,72 @@ pub const CMD_DOWNLOAD_YOUTUBE_URL: Catalog = cat! {
     zh: "YouTube 视频链接",
     ru: "URL видео YouTube",
     uk: "URL відео YouTube",
+};
+
+pub const CMD_DOWNLOAD_VIDEO_QUALITY: Catalog = cat! {
+    en: "Video quality: 270p, 480p, 720p, 1080p, 1440p",
+    hu: "Videóminőség: 270p, 480p, 720p, 1080p, 1440p",
+    de: "Videoqualität: 270p, 480p, 720p, 1080p, 1440p",
+    es: "Calidad de vídeo: 270p, 480p, 720p, 1080p, 1440p",
+    it: "Qualità video: 270p, 480p, 720p, 1080p, 1440p",
+    zh: "视频质量：270p、480p、720p、1080p、1440p",
+    ru: "Качество видео: 270p, 480p, 720p, 1080p, 1440p",
+    uk: "Якість відео: 270p, 480p, 720p, 1080p, 1440p",
+};
+
+pub const CMD_DOWNLOAD_MUSIC: Catalog = cat! {
+    en: "Download audio from YouTube, YouTube Music, or Spotify. For educational purposes only.",
+    hu: "Hang letöltése YouTube, YouTube Music vagy Spotify linkről. For educational purposes only.",
+    de: "Audio von YouTube, YouTube Music oder Spotify herunterladen. For educational purposes only.",
+    es: "Descargar audio de YouTube, YouTube Music o Spotify. For educational purposes only.",
+    it: "Scarica audio da YouTube, YouTube Music o Spotify. For educational purposes only.",
+    zh: "从 YouTube、YouTube Music 或 Spotify 下载音频。For educational purposes only.",
+    ru: "Скачать аудио с YouTube, YouTube Music или Spotify. For educational purposes only.",
+    uk: "Завантажити аудіо з YouTube, YouTube Music або Spotify. For educational purposes only.",
+};
+
+pub const CMD_DOWNLOAD_MUSIC_URL: Catalog = cat! {
+    en: "YouTube, YouTube Music, or Spotify URL",
+    hu: "YouTube, YouTube Music vagy Spotify URL",
+    de: "YouTube-, YouTube-Music- oder Spotify-URL",
+    es: "URL de YouTube, YouTube Music o Spotify",
+    it: "URL di YouTube, YouTube Music o Spotify",
+    zh: "YouTube、YouTube Music 或 Spotify 链接",
+    ru: "URL YouTube, YouTube Music или Spotify",
+    uk: "URL YouTube, YouTube Music або Spotify",
+};
+
+pub const CMD_DOWNLOAD_AUDIO_QUALITY: Catalog = cat! {
+    en: "Audio quality: 128k, 192k, 256k, 320k",
+    hu: "Hangminőség: 128k, 192k, 256k, 320k",
+    de: "Audioqualität: 128k, 192k, 256k, 320k",
+    es: "Calidad de audio: 128k, 192k, 256k, 320k",
+    it: "Qualità audio: 128k, 192k, 256k, 320k",
+    zh: "音频质量：128k、192k、256k、320k",
+    ru: "Качество аудио: 128k, 192k, 256k, 320k",
+    uk: "Якість аудіо: 128k, 192k, 256k, 320k",
+};
+
+pub const CMD_INSTALL: Catalog = cat! {
+    en: "Install tools (yt-dlp)",
+    hu: "Eszközök telepítése (yt-dlp)",
+    de: "Tools installieren (yt-dlp)",
+    es: "Instalar herramientas (yt-dlp)",
+    it: "Installa strumenti (yt-dlp)",
+    zh: "安装工具（yt-dlp）",
+    ru: "Установка инструментов (yt-dlp)",
+    uk: "Встановлення інструментів (yt-dlp)",
+};
+
+pub const CMD_INSTALL_YT_DLP: Catalog = cat! {
+    en: "Install yt-dlp and ffmpeg via Homebrew",
+    hu: "yt-dlp és ffmpeg telepítése Homebrew-val",
+    de: "yt-dlp und ffmpeg per Homebrew installieren",
+    es: "Instalar yt-dlp y ffmpeg con Homebrew",
+    it: "Installa yt-dlp e ffmpeg con Homebrew",
+    zh: "通过 Homebrew 安装 yt-dlp 和 ffmpeg",
+    ru: "Установить yt-dlp и ffmpeg через Homebrew",
+    uk: "Встановити yt-dlp і ffmpeg через Homebrew",
 };
 
 // —— Common ————————————————————————————————————————————————
@@ -1415,13 +1481,13 @@ pub const SETUP_GH_USER_EMPTY: Catalog = cat! {
 
 pub const YT_DISCLAIMER: Catalog = cat! {
     en: "For educational purposes only.",
-    hu: "Oktatási célokat szolgál.",
-    de: "Dient ausschließlich Bildungszwecken.",
-    es: "Solo con fines educativos.",
-    it: "Solo a scopo educativo.",
-    zh: "仅用于教育目的。",
-    ru: "Только в образовательных целях.",
-    uk: "Лише з освітньою метою.",
+    hu: "For educational purposes only.",
+    de: "For educational purposes only.",
+    es: "For educational purposes only.",
+    it: "For educational purposes only.",
+    zh: "For educational purposes only.",
+    ru: "For educational purposes only.",
+    uk: "For educational purposes only.",
 };
 
 pub const YT_URL_PROMPT: Catalog = cat! {
@@ -1444,6 +1510,83 @@ pub const YT_INVALID_URL: Catalog = cat! {
     zh: "不是 YouTube 链接。请使用 youtube.com 或 youtu.be。",
     ru: "Это не URL YouTube. Используйте youtube.com или youtu.be.",
     uk: "Це не URL YouTube. Використовуйте youtube.com або youtu.be.",
+};
+
+pub const YT_QUALITY_PROMPT: Catalog = cat! {
+    en: "Quality ({options})",
+    hu: "Minőség ({options})",
+    de: "Qualität ({options})",
+    es: "Calidad ({options})",
+    it: "Qualità ({options})",
+    zh: "质量（{options}）",
+    ru: "Качество ({options})",
+    uk: "Якість ({options})",
+};
+
+pub const YT_QUALITY_INVALID: Catalog = cat! {
+    en: "Choose 270p, 480p, 720p, 1080p, or 1440p.",
+    hu: "Válassz: 270p, 480p, 720p, 1080p vagy 1440p.",
+    de: "Wähle 270p, 480p, 720p, 1080p oder 1440p.",
+    es: "Elige 270p, 480p, 720p, 1080p o 1440p.",
+    it: "Scegli 270p, 480p, 720p, 1080p o 1440p.",
+    zh: "请选择 270p、480p、720p、1080p 或 1440p。",
+    ru: "Выберите 270p, 480p, 720p, 1080p или 1440p.",
+    uk: "Оберіть 270p, 480p, 720p, 1080p або 1440p.",
+};
+
+pub const MUSIC_URL_PROMPT: Catalog = cat! {
+    en: "YouTube / YouTube Music / Spotify URL",
+    hu: "YouTube / YouTube Music / Spotify URL",
+    de: "YouTube- / YouTube-Music- / Spotify-URL",
+    es: "URL de YouTube / YouTube Music / Spotify",
+    it: "URL di YouTube / YouTube Music / Spotify",
+    zh: "YouTube / YouTube Music / Spotify 链接",
+    ru: "URL YouTube / YouTube Music / Spotify",
+    uk: "URL YouTube / YouTube Music / Spotify",
+};
+
+pub const MUSIC_INVALID_URL: Catalog = cat! {
+    en: "Not a supported URL. Use YouTube, YouTube Music, or Spotify.",
+    hu: "Nem támogatott URL. Használj YouTube, YouTube Music vagy Spotify linket.",
+    de: "Keine unterstützte URL. Verwende YouTube, YouTube Music oder Spotify.",
+    es: "URL no compatible. Usa YouTube, YouTube Music o Spotify.",
+    it: "URL non supportato. Usa YouTube, YouTube Music o Spotify.",
+    zh: "不支持的链接。请使用 YouTube、YouTube Music 或 Spotify。",
+    ru: "Неподдерживаемый URL. Используйте YouTube, YouTube Music или Spotify.",
+    uk: "Непідтримуваний URL. Використовуйте YouTube, YouTube Music або Spotify.",
+};
+
+pub const MUSIC_QUALITY_PROMPT: Catalog = cat! {
+    en: "Audio quality ({options})",
+    hu: "Hangminőség ({options})",
+    de: "Audioqualität ({options})",
+    es: "Calidad de audio ({options})",
+    it: "Qualità audio ({options})",
+    zh: "音频质量（{options}）",
+    ru: "Качество аудио ({options})",
+    uk: "Якість аудіо ({options})",
+};
+
+pub const MUSIC_QUALITY_INVALID: Catalog = cat! {
+    en: "Choose 128k, 192k, 256k, or 320k.",
+    hu: "Válassz: 128k, 192k, 256k vagy 320k.",
+    de: "Wähle 128k, 192k, 256k oder 320k.",
+    es: "Elige 128k, 192k, 256k o 320k.",
+    it: "Scegli 128k, 192k, 256k o 320k.",
+    zh: "请选择 128k、192k、256k 或 320k。",
+    ru: "Выберите 128k, 192k, 256k или 320k.",
+    uk: "Оберіть 128k, 192k, 256k або 320k.",
+};
+
+pub const MUSIC_FAIL: Catalog = cat! {
+    en: "Music download failed: {error}",
+    hu: "Zeneletöltés sikertelen: {error}",
+    de: "Musik-Download fehlgeschlagen: {error}",
+    es: "La descarga de música falló: {error}",
+    it: "Download musica non riuscito: {error}",
+    zh: "音乐下载失败：{error}",
+    ru: "Не удалось скачать музыку: {error}",
+    uk: "Не вдалося завантажити музику: {error}",
 };
 
 pub const YT_FOLDER_PROMPT: Catalog = cat! {
@@ -1534,28 +1677,6 @@ pub const YT_BREW_MISSING: Catalog = cat! {
     uk: "Homebrew також не встановлено. Встановіть його з https://brew.sh/",
 };
 
-pub const YT_INSTALL: Catalog = cat! {
-    en: "Install via Homebrew (`brew install {tool}`)",
-    hu: "Telepítsem Homebrew-val (`brew install {tool}`)",
-    de: "Per Homebrew installieren (`brew install {tool}`)",
-    es: "Instalar con Homebrew (`brew install {tool}`)",
-    it: "Installare con Homebrew (`brew install {tool}`)",
-    zh: "通过 Homebrew 安装（`brew install {tool}`）",
-    ru: "Установить через Homebrew (`brew install {tool}`)",
-    uk: "Встановити через Homebrew (`brew install {tool}`)",
-};
-
-pub const YT_REQUIRED: Catalog = cat! {
-    en: "cannot continue without {tool}",
-    hu: "{tool} nélkül a letöltés nem folytatható",
-    de: "Ohne {tool} nicht möglich",
-    es: "no se puede continuar sin {tool}",
-    it: "impossibile continuare senza {tool}",
-    zh: "没有 {tool} 无法继续",
-    ru: "без {tool} продолжить нельзя",
-    uk: "без {tool} продовжити неможливо",
-};
-
 pub const YT_INSTALLING: Catalog = cat! {
     en: "Installing {tool}...",
     hu: "{tool} telepítése...",
@@ -1598,4 +1719,15 @@ pub const YT_NOT_A_DIR: Catalog = cat! {
     zh: "不是文件夹：{path}",
     ru: "это не папка: {path}",
     uk: "це не тека: {path}",
+};
+
+pub const INSTALL_FAIL: Catalog = cat! {
+    en: "Install failed: {error}",
+    hu: "Telepítés sikertelen: {error}",
+    de: "Installation fehlgeschlagen: {error}",
+    es: "La instalación falló: {error}",
+    it: "Installazione non riuscita: {error}",
+    zh: "安装失败：{error}",
+    ru: "Установка не удалась: {error}",
+    uk: "Встановлення не вдалося: {error}",
 };

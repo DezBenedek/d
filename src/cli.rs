@@ -48,10 +48,15 @@ pub enum Commands {
         #[command(subcommand)]
         command: GenCommands,
     },
-    /// Download helpers (youtube)
+    /// Download helpers (youtube, music) — For educational purposes only.
     Download {
         #[command(subcommand)]
         command: DownloadCommands,
+    },
+    /// Install tools (yt-dlp)
+    Install {
+        #[command(subcommand)]
+        command: InstallCommands,
     },
 }
 
@@ -103,9 +108,27 @@ pub enum GenCommands {
 
 #[derive(Subcommand)]
 pub enum DownloadCommands {
-    /// Download a YouTube video (educational purposes)
+    /// Download a YouTube video. For educational purposes only.
     Youtube {
         /// YouTube video URL
         url: Option<String>,
+        /// Video quality: 270p, 480p, 720p, 1080p, 1440p
+        #[arg(short, long, value_name = "QUALITY")]
+        quality: Option<String>,
     },
+    /// Download audio from YouTube, YouTube Music, or Spotify. For educational purposes only.
+    Music {
+        /// YouTube, YouTube Music, or Spotify URL
+        url: Option<String>,
+        /// Audio quality: 128k, 192k, 256k, 320k
+        #[arg(short, long, value_name = "QUALITY")]
+        quality: Option<String>,
+    },
+}
+
+#[derive(Subcommand)]
+pub enum InstallCommands {
+    /// Install yt-dlp and ffmpeg via Homebrew
+    #[command(name = "yt-dlp")]
+    YtDlp,
 }
