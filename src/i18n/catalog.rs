@@ -328,6 +328,39 @@ pub const CMD_GEN_PASSWORD_LEN: Catalog = cat! {
     uk: "Довжина пароля (за замовчуванням: 24)",
 };
 
+pub const CMD_DOWNLOAD: Catalog = cat! {
+    en: "Download helpers (youtube)",
+    hu: "Letöltő parancsok (youtube)",
+    de: "Download-Befehle (youtube)",
+    es: "Comandos de descarga (youtube)",
+    it: "Comandi di download (youtube)",
+    zh: "下载命令（youtube）",
+    ru: "Команды загрузки (youtube)",
+    uk: "Команди завантаження (youtube)",
+};
+
+pub const CMD_DOWNLOAD_YOUTUBE: Catalog = cat! {
+    en: "Download a YouTube video (educational purposes)",
+    hu: "YouTube-videó letöltése (oktatási célokra)",
+    de: "YouTube-Video herunterladen (zu Bildungszwecken)",
+    es: "Descargar un vídeo de YouTube (fines educativos)",
+    it: "Scarica un video di YouTube (scopi educativi)",
+    zh: "下载 YouTube 视频（仅教育用途）",
+    ru: "Скачать видео с YouTube (в образовательных целях)",
+    uk: "Завантажити відео з YouTube (з освітньою метою)",
+};
+
+pub const CMD_DOWNLOAD_YOUTUBE_URL: Catalog = cat! {
+    en: "YouTube video URL",
+    hu: "YouTube-videó URL-je",
+    de: "YouTube-Video-URL",
+    es: "URL del vídeo de YouTube",
+    it: "URL del video di YouTube",
+    zh: "YouTube 视频链接",
+    ru: "URL видео YouTube",
+    uk: "URL відео YouTube",
+};
+
 // —— Common ————————————————————————————————————————————————
 
 pub const ERR_EXIT_CODE: Catalog = cat! {
@@ -1376,4 +1409,193 @@ pub const SETUP_GH_USER_EMPTY: Catalog = cat! {
     zh: "GitHub 用户名为空",
     ru: "пустое имя пользователя GitHub",
     uk: "порожнє ім'я користувача GitHub",
+};
+
+// —— Download / YouTube ————————————————————————————————————————————————
+
+pub const YT_DISCLAIMER: Catalog = cat! {
+    en: "For educational purposes only.",
+    hu: "Oktatási célokat szolgál.",
+    de: "Dient ausschließlich Bildungszwecken.",
+    es: "Solo con fines educativos.",
+    it: "Solo a scopo educativo.",
+    zh: "仅用于教育目的。",
+    ru: "Только в образовательных целях.",
+    uk: "Лише з освітньою метою.",
+};
+
+pub const YT_URL_PROMPT: Catalog = cat! {
+    en: "YouTube URL",
+    hu: "YouTube URL",
+    de: "YouTube-URL",
+    es: "URL de YouTube",
+    it: "URL di YouTube",
+    zh: "YouTube 链接",
+    ru: "URL YouTube",
+    uk: "URL YouTube",
+};
+
+pub const YT_INVALID_URL: Catalog = cat! {
+    en: "Not a YouTube URL. Use youtube.com or youtu.be.",
+    hu: "Ez nem YouTube-URL. Használj youtube.com-ot vagy youtu.be-t.",
+    de: "Keine YouTube-URL. Verwende youtube.com oder youtu.be.",
+    es: "No es una URL de YouTube. Usa youtube.com o youtu.be.",
+    it: "Non è un URL di YouTube. Usa youtube.com o youtu.be.",
+    zh: "不是 YouTube 链接。请使用 youtube.com 或 youtu.be。",
+    ru: "Это не URL YouTube. Используйте youtube.com или youtu.be.",
+    uk: "Це не URL YouTube. Використовуйте youtube.com або youtu.be.",
+};
+
+pub const YT_FOLDER_PROMPT: Catalog = cat! {
+    en: "Choose a download folder",
+    hu: "Válaszd ki a letöltési mappát",
+    de: "Download-Ordner wählen",
+    es: "Elige la carpeta de descarga",
+    it: "Scegli la cartella di download",
+    zh: "选择下载文件夹",
+    ru: "Выберите папку для загрузки",
+    uk: "Оберіть теку для завантаження",
+};
+
+pub const YT_FOLDER_PATH_PROMPT: Catalog = cat! {
+    en: "Download folder path",
+    hu: "Letöltési mappa elérési útja",
+    de: "Pfad des Download-Ordners",
+    es: "Ruta de la carpeta de descarga",
+    it: "Percorso della cartella di download",
+    zh: "下载文件夹路径",
+    ru: "Путь к папке загрузки",
+    uk: "Шлях до теки завантаження",
+};
+
+pub const YT_DOWNLOADING: Catalog = cat! {
+    en: "Downloading to {path}...",
+    hu: "Letöltés ide: {path}...",
+    de: "Download nach {path}...",
+    es: "Descargando en {path}...",
+    it: "Download in {path}...",
+    zh: "正在下载到 {path}...",
+    ru: "Загрузка в {path}...",
+    uk: "Завантаження до {path}...",
+};
+
+pub const YT_DONE: Catalog = cat! {
+    en: "Download complete.",
+    hu: "Letöltés kész.",
+    de: "Download abgeschlossen.",
+    es: "Descarga completada.",
+    it: "Download completato.",
+    zh: "下载完成。",
+    ru: "Загрузка завершена.",
+    uk: "Завантаження завершено.",
+};
+
+pub const YT_FAIL: Catalog = cat! {
+    en: "YouTube download failed: {error}",
+    hu: "YouTube-letöltés sikertelen: {error}",
+    de: "YouTube-Download fehlgeschlagen: {error}",
+    es: "La descarga de YouTube falló: {error}",
+    it: "Download da YouTube non riuscito: {error}",
+    zh: "YouTube 下载失败：{error}",
+    ru: "Не удалось скачать с YouTube: {error}",
+    uk: "Не вдалося завантажити з YouTube: {error}",
+};
+
+pub const YT_TOOL_OK: Catalog = cat! {
+    en: "{tool} is available.",
+    hu: "{tool} megvan.",
+    de: "{tool} ist vorhanden.",
+    es: "{tool} está disponible.",
+    it: "{tool} è disponibile.",
+    zh: "已安装 {tool}。",
+    ru: "{tool} доступен.",
+    uk: "{tool} доступний.",
+};
+
+pub const YT_TOOL_MISSING: Catalog = cat! {
+    en: "{tool} is not installed.",
+    hu: "A(z) {tool} nincs telepítve.",
+    de: "{tool} ist nicht installiert.",
+    es: "{tool} no está instalado.",
+    it: "{tool} non è installato.",
+    zh: "未安装 {tool}。",
+    ru: "{tool} не установлен.",
+    uk: "{tool} не встановлено.",
+};
+
+pub const YT_BREW_MISSING: Catalog = cat! {
+    en: "Homebrew is not installed either. Install it from https://brew.sh/",
+    hu: "a Homebrew sincs telepítve. Telepítsd: https://brew.sh/",
+    de: "Homebrew fehlt ebenfalls. Installiere es unter https://brew.sh/",
+    es: "Homebrew tampoco está instalado. Instálalo desde https://brew.sh/",
+    it: "Manca anche Homebrew. Installalo da https://brew.sh/",
+    zh: "也未安装 Homebrew。请从 https://brew.sh/ 安装。",
+    ru: "Homebrew тоже не установлен. Установите его с https://brew.sh/",
+    uk: "Homebrew також не встановлено. Встановіть його з https://brew.sh/",
+};
+
+pub const YT_INSTALL: Catalog = cat! {
+    en: "Install via Homebrew (`brew install {tool}`)",
+    hu: "Telepítsem Homebrew-val (`brew install {tool}`)",
+    de: "Per Homebrew installieren (`brew install {tool}`)",
+    es: "Instalar con Homebrew (`brew install {tool}`)",
+    it: "Installare con Homebrew (`brew install {tool}`)",
+    zh: "通过 Homebrew 安装（`brew install {tool}`）",
+    ru: "Установить через Homebrew (`brew install {tool}`)",
+    uk: "Встановити через Homebrew (`brew install {tool}`)",
+};
+
+pub const YT_REQUIRED: Catalog = cat! {
+    en: "cannot continue without {tool}",
+    hu: "{tool} nélkül a letöltés nem folytatható",
+    de: "Ohne {tool} nicht möglich",
+    es: "no se puede continuar sin {tool}",
+    it: "impossibile continuare senza {tool}",
+    zh: "没有 {tool} 无法继续",
+    ru: "без {tool} продолжить нельзя",
+    uk: "без {tool} продовжити неможливо",
+};
+
+pub const YT_INSTALLING: Catalog = cat! {
+    en: "Installing {tool}...",
+    hu: "{tool} telepítése...",
+    de: "{tool} wird installiert...",
+    es: "Instalando {tool}...",
+    it: "Installazione di {tool}...",
+    zh: "正在安装 {tool}...",
+    ru: "Установка {tool}...",
+    uk: "Встановлення {tool}...",
+};
+
+pub const YT_PATH: Catalog = cat! {
+    en: "{tool} is still not on PATH after install",
+    hu: "a(z) {tool} telepítése után sem elérhető a PATH-ban",
+    de: "{tool} ist nach der Installation nicht im PATH",
+    es: "{tool} sigue sin estar en el PATH tras instalarse",
+    it: "{tool} non è ancora nel PATH dopo l'installazione",
+    zh: "安装后仍无法在 PATH 中找到 {tool}",
+    ru: "после установки {tool} всё ещё нет в PATH",
+    uk: "після встановлення {tool} досі немає в PATH",
+};
+
+pub const YT_TOOL_INSTALLED: Catalog = cat! {
+    en: "{tool} installed.",
+    hu: "{tool} telepítve.",
+    de: "{tool} installiert.",
+    es: "{tool} instalado.",
+    it: "{tool} installato.",
+    zh: "{tool} 已安装。",
+    ru: "{tool} установлен.",
+    uk: "{tool} встановлено.",
+};
+
+pub const YT_NOT_A_DIR: Catalog = cat! {
+    en: "not a directory: {path}",
+    hu: "nem mappa: {path}",
+    de: "kein Ordner: {path}",
+    es: "no es una carpeta: {path}",
+    it: "non è una cartella: {path}",
+    zh: "不是文件夹：{path}",
+    ru: "это не папка: {path}",
+    uk: "це не тека: {path}",
 };

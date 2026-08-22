@@ -1,10 +1,11 @@
 use clap::Command;
 
 use super::{
-    APP_ABOUT, CMD_GEN, CMD_GEN_BASE64, CMD_GEN_BYTES, CMD_GEN_HEX, CMD_GEN_PASSWORD,
-    CMD_GEN_PASSWORD_LEN, CMD_GEN_UUID, CMD_GIT, CMD_GIT_FIX, CMD_GIT_SETUP, CMD_GIT_UPDATE,
-    CMD_IP, CMD_MACOS, CMD_MACOS_DOCK, CMD_MACOS_FLUSHDNS, CMD_MACOS_RESET, CMD_MACOS_START,
-    CMD_PUSH, CMD_PUSH_MSG, CMD_UPDATE, CMD_VERSION, FLAG_AUTHORS, FLAG_DOC, FLAG_LANG, tr,
+    APP_ABOUT, CMD_DOWNLOAD, CMD_DOWNLOAD_YOUTUBE, CMD_DOWNLOAD_YOUTUBE_URL, CMD_GEN,
+    CMD_GEN_BASE64, CMD_GEN_BYTES, CMD_GEN_HEX, CMD_GEN_PASSWORD, CMD_GEN_PASSWORD_LEN,
+    CMD_GEN_UUID, CMD_GIT, CMD_GIT_FIX, CMD_GIT_SETUP, CMD_GIT_UPDATE, CMD_IP, CMD_MACOS,
+    CMD_MACOS_DOCK, CMD_MACOS_FLUSHDNS, CMD_MACOS_RESET, CMD_MACOS_START, CMD_PUSH, CMD_PUSH_MSG,
+    CMD_UPDATE, CMD_VERSION, FLAG_AUTHORS, FLAG_DOC, FLAG_LANG, tr,
 };
 
 pub fn apply_translations(cmd: Command) -> Command {
@@ -47,6 +48,12 @@ pub fn apply_translations(cmd: Command) -> Command {
                     c.about(tr(&CMD_GEN_PASSWORD))
                         .mut_arg("length", |arg| arg.help(tr(&CMD_GEN_PASSWORD_LEN)))
                 })
+        })
+        .mut_subcommand("download", |c| {
+            c.about(tr(&CMD_DOWNLOAD)).mut_subcommand("youtube", |c| {
+                c.about(tr(&CMD_DOWNLOAD_YOUTUBE))
+                    .mut_arg("url", |arg| arg.help(tr(&CMD_DOWNLOAD_YOUTUBE_URL)))
+            })
         })
 }
 

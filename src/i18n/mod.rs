@@ -295,4 +295,13 @@ mod tests {
             "Az aktuális branch legfrissebb változásainak letöltése"
         );
     }
+
+    #[test]
+    fn youtube_disclaimer_is_educational() {
+        assert_eq!(
+            YT_DISCLAIMER.get(Lang::En),
+            "For educational purposes only."
+        );
+        assert_eq!(YT_DISCLAIMER.get(Lang::Hu), "Oktatási célokat szolgál.");
+    }
 }

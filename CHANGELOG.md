@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.0] - 2026-08-22
+
+### Added
+- `d download youtube [url]` — educational YouTube downloader via `yt-dlp`, with a native macOS folder picker and an educational-purpose disclaimer
+
 ## [1.1.0] - 2026-08-16
 
 ### Added

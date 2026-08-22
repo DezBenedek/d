@@ -48,6 +48,11 @@ pub enum Commands {
         #[command(subcommand)]
         command: GenCommands,
     },
+    /// Download helpers (youtube)
+    Download {
+        #[command(subcommand)]
+        command: DownloadCommands,
+    },
 }
 
 #[derive(Subcommand)]
@@ -93,5 +98,14 @@ pub enum GenCommands {
         /// Password length (default: 24)
         #[arg(default_value_t = 24)]
         length: u32,
+    },
+}
+
+#[derive(Subcommand)]
+pub enum DownloadCommands {
+    /// Download a YouTube video (educational purposes)
+    Youtube {
+        /// YouTube video URL
+        url: Option<String>,
     },
 }

@@ -38,6 +38,7 @@ fn main() {
         Some(Commands::Git { command }) => commands::git::run(command),
         Some(Commands::Macos { command }) => commands::macos::run(command),
         Some(Commands::Gen { command }) => commands::generate::run(command),
+        Some(Commands::Download { command }) => commands::download::run(command),
         None => i18n::print_help(),
     }
 }

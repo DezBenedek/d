@@ -1,6 +1,6 @@
 # d CLI
 
-A small, fast command-line toolkit for everyday developer tasks on macOS — git workflow helpers, GitHub repo setup, local networking, secret generation, and self-updates.
+A small, fast command-line toolkit for everyday developer tasks on macOS — git workflow helpers, GitHub repo setup, local networking, secret generation, educational YouTube download, and self-updates.
 
 ## Why d?
 
@@ -88,6 +88,15 @@ d macos flushdns   # flush DNS cache (sudo)
 d macos reset      # undo `d macos start`
 ```
 
+### YouTube download (educational)
+
+Downloads a YouTube video with `yt-dlp` (installs it via Homebrew if needed). **For educational purposes only.** After the URL, a native macOS folder picker asks where to save; the filename comes from the video title.
+
+```bash
+d download youtube
+d download youtube https://www.youtube.com/watch?v=...
+```
+
 ### Multilingual UI
 
 Supported languages: **en** (default), **hu**, **de**, **es**, **it**, **zh**, **ru**, **uk**.
@@ -128,6 +137,7 @@ Help text, prompts, and command messages are all localized.
 | `d macos dock` | Auto-hide the Dock |
 | `d macos flushdns` | Flush the DNS cache |
 | `d macos reset` | Undo `d macos start` |
+| `d download youtube [url]` | Download a YouTube video (educational; native folder picker) |
 | `--lang` / `-L` | Force UI language |
 | `--authors` | Print author name |
 | `--doc` | Print documentation URL |
@@ -154,6 +164,7 @@ d gen hex 64
 d gen uuid
 d gen password 32
 d macos start
+d download youtube
 ```
 
 ## Development
@@ -175,7 +186,7 @@ CLI parsing uses [`clap`](https://crates.io/crates/clap).
 
 ## Info
 
-- **Version:** 1.1.0
+- **Version:** 1.2.0
 - **MSRV:** 1.85
 - **Author:** Dezső Benedek
 - **Repo / docs:** [github.com/DezBenedek/d](https://github.com/DezBenedek/d)
