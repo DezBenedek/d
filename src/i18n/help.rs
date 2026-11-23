@@ -4,10 +4,11 @@ use super::{
     APP_ABOUT, CMD_DOWNLOAD, CMD_DOWNLOAD_AUDIO_QUALITY, CMD_DOWNLOAD_MUSIC,
     CMD_DOWNLOAD_MUSIC_URL, CMD_DOWNLOAD_VIDEO_QUALITY, CMD_DOWNLOAD_YOUTUBE,
     CMD_DOWNLOAD_YOUTUBE_URL, CMD_GEN, CMD_GEN_BASE64, CMD_GEN_BYTES, CMD_GEN_HEX,
-    CMD_GEN_PASSWORD, CMD_GEN_PASSWORD_LEN, CMD_GEN_UUID, CMD_GIT, CMD_GIT_FIX, CMD_GIT_SETUP,
-    CMD_GIT_UPDATE, CMD_INSTALL, CMD_INSTALL_YT_DLP, CMD_IP, CMD_MACOS, CMD_MACOS_DOCK,
-    CMD_MACOS_FLUSHDNS, CMD_MACOS_RESET, CMD_MACOS_START, CMD_PUSH, CMD_PUSH_MSG, CMD_UPDATE,
-    CMD_VERSION, FLAG_AUTHORS, FLAG_DOC, FLAG_LANG, tr,
+    CMD_GEN_PASSWORD, CMD_GEN_PASSWORD_LEN, CMD_GEN_UUID, CMD_GIT, CMD_GIT_CLEAN, CMD_GIT_FIX,
+    CMD_GIT_SETUP, CMD_GIT_UPDATE, CMD_INSTALL, CMD_INSTALL_YT_DLP, CMD_IP, CMD_KILLPORT,
+    CMD_KILLPORT_NUMBER, CMD_MACOS, CMD_MACOS_DOCK, CMD_MACOS_FLUSHDNS, CMD_MACOS_RESET,
+    CMD_MACOS_START, CMD_PORT, CMD_PORT_NUMBER, CMD_PUSH, CMD_PUSH_MSG, CMD_SERVE, CMD_SERVE_DIR,
+    CMD_SERVE_PORT, CMD_SYS, CMD_UPDATE, CMD_VERSION, FLAG_AUTHORS, FLAG_DOC, FLAG_LANG, tr,
 };
 
 pub fn apply_translations(cmd: Command) -> Command {
@@ -16,6 +17,20 @@ pub fn apply_translations(cmd: Command) -> Command {
         .mut_arg("doc", |arg| arg.help(tr(&FLAG_DOC)))
         .mut_arg("lang", |arg| arg.help(tr(&FLAG_LANG)))
         .mut_subcommand("ip", |c| c.about(tr(&CMD_IP)))
+        .mut_subcommand("port", |c| {
+            c.about(tr(&CMD_PORT))
+                .mut_arg("port", |arg| arg.help(tr(&CMD_PORT_NUMBER)))
+        })
+        .mut_subcommand("killport", |c| {
+            c.about(tr(&CMD_KILLPORT))
+                .mut_arg("port", |arg| arg.help(tr(&CMD_KILLPORT_NUMBER)))
+        })
+        .mut_subcommand("serve", |c| {
+            c.about(tr(&CMD_SERVE))
+                .mut_arg("dir", |arg| arg.help(tr(&CMD_SERVE_DIR)))
+                .mut_arg("port", |arg| arg.help(tr(&CMD_SERVE_PORT)))
+        })
+        .mut_subcommand("sys", |c| c.about(tr(&CMD_SYS)))
         .mut_subcommand("version", |c| c.about(tr(&CMD_VERSION)))
         .mut_subcommand("update", |c| c.about(tr(&CMD_UPDATE)))
         .mut_subcommand("push", |c| {
@@ -27,6 +42,7 @@ pub fn apply_translations(cmd: Command) -> Command {
                 .mut_subcommand("fix", |c| c.about(tr(&CMD_GIT_FIX)))
                 .mut_subcommand("setup", |c| c.about(tr(&CMD_GIT_SETUP)))
                 .mut_subcommand("update", |c| c.about(tr(&CMD_GIT_UPDATE)))
+                .mut_subcommand("clean", |c| c.about(tr(&CMD_GIT_CLEAN)))
         })
         .mut_subcommand("macos", |c| {
             c.about(tr(&CMD_MACOS))

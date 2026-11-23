@@ -11,7 +11,7 @@ pub fn run() {
     }
 }
 
-fn local_ip() -> std::io::Result<String> {
+pub(crate) fn local_ip() -> std::io::Result<String> {
     let socket = UdpSocket::bind("0.0.0.0:0")?;
     socket.connect("8.8.8.8:80")?;
     let local_addr = socket.local_addr()?;

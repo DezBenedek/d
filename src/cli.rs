@@ -23,6 +23,26 @@ pub struct Cli {
 pub enum Commands {
     /// Print the machine's local (LAN) IP address
     Ip,
+    /// Show what is listening on a TCP port
+    Port {
+        /// Port number
+        port: u16,
+    },
+    /// Kill the process listening on a TCP port
+    Killport {
+        /// Port number
+        port: u16,
+    },
+    /// Serve a folder over HTTP for local testing
+    Serve {
+        /// Folder to serve (default: current directory)
+        dir: Option<String>,
+        /// Port to listen on (default: 8000)
+        #[arg(short, long, value_name = "PORT")]
+        port: Option<u16>,
+    },
+    /// Print system info (OS, CPU, memory, disk, uptime, LAN IP)
+    Sys,
     /// Print the CLI version
     Version,
     /// Download and install the latest version (github.com/DezBenedek/d)
@@ -33,7 +53,7 @@ pub enum Commands {
         #[arg(trailing_var_arg = true)]
         message: Vec<String>,
     },
-    /// Git helpers (fix, setup, update)
+    /// Git helpers (fix, setup, update, clean)
     Git {
         #[command(subcommand)]
         command: GitCommands,
@@ -68,6 +88,8 @@ pub enum GitCommands {
     Setup,
     /// Pull the latest changes for the current branch
     Update,
+    /// Untrack ignored files, delete merged branches, prune origin
+    Clean,
 }
 
 #[derive(Subcommand)]
@@ -116,9 +138,9 @@ pub enum DownloadCommands {
         #[arg(short, long, value_name = "QUALITY")]
         quality: Option<String>,
     },
-    /// Download audio from YouTube, YouTube Music, or Spotify. For educational purposes only.
+    /// Download audio from YouTube, YouTube Music, Spotify, or Apple Music. For educational purposes only.
     Music {
-        /// YouTube, YouTube Music, or Spotify URL
+        /// YouTube, YouTube Music, Spotify, or Apple Music URL
         url: Option<String>,
         /// Audio quality: 128k, 192k, 256k, 320k
         #[arg(short, long, value_name = "QUALITY")]

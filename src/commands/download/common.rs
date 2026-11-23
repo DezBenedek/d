@@ -97,6 +97,64 @@ pub fn is_spotify_url(raw: &str) -> bool {
     )
 }
 
+pub fn is_apple_music_url(raw: &str) -> bool {
+    matches!(
+        url_host(raw).as_deref(),
+        Some("music.apple.com") | Some("itunes.apple.com")
+    )
+}
+
+/// Numeric track/song/album ID from an Apple Music URL.
+///
+/// Prefers the `?i=` song parameter (`.../album/.../123?i=456` → `456`),
+/// otherwise the last all-digit path segment (`.../song/.../789` → `789`).
+/// Playlist IDs (`pl.…`) are not numeric — those return `None`.
+pub fn apple_music_track_id(raw: &str) -> Option<String> {
+    let trimmed = raw.trim();
+    if let Some(query) = trimmed.split('?').nth(1) {
+        let query = query.split('#').next().unwrap_or(query);
+        for pair in query.split('&') {
+            let mut parts = pair.splitn(2, '=');
+            if parts.next().unwrap_or("").trim() == "i" {
+                let value = parts.next().unwrap_or("").trim();
+                if !value.is_empty() && value.chars().all(|c| c.is_ascii_digit()) {
+                    return Some(value.to_string());
+                }
+            }
+        }
+    }
+    let path = trimmed.split(['?', '#']).next().unwrap_or(trimmed);
+    let without_scheme = path
+        .strip_prefix("https://")
+        .or_else(|| path.strip_prefix("http://"))
+        .unwrap_or(path);
+    without_scheme
+        .rsplit('/')
+        .map(|segment| segment.trim())
+        .find(|segment| !segment.is_empty() && segment.chars().all(|c| c.is_ascii_digit()))
+        .map(|segment| segment.to_string())
+}
+
+/// Storefront country from an Apple Music URL path (`/us/…` → `US`).
+/// Falls back to `US` when the URL has no country prefix.
+pub fn apple_music_country(raw: &str) -> String {
+    let trimmed = raw.trim();
+    let path = trimmed.split(['?', '#']).next().unwrap_or(trimmed);
+    let without_scheme = path
+        .strip_prefix("https://")
+        .or_else(|| path.strip_prefix("http://"))
+        .unwrap_or(path);
+    let mut segments = without_scheme.split('/').filter(|s| !s.trim().is_empty());
+    let _host = segments.next();
+    if let Some(code) = segments.next() {
+        let code = code.trim();
+        if code.len() == 2 && code.chars().all(|c| c.is_ascii_alphabetic()) {
+            return code.to_ascii_uppercase();
+        }
+    }
+    "US".to_string()
+}
+
 fn url_host(raw: &str) -> Option<String> {
     let trimmed = raw.trim();
     if trimmed.is_empty() {
@@ -343,5 +401,59 @@ mod tests {
         assert_eq!(expand_path("~"), home);
         assert_eq!(expand_path("~/Movies"), home.join("Movies"));
         assert_eq!(expand_path("/tmp"), PathBuf::from("/tmp"));
+    }
+
+    #[test]
+    fn apple_music_url_accepts_music_and_itunes_hosts() {
+        assert!(is_apple_music_url(
+            "https://music.apple.com/us/album/never-gonna-give-you-up-2022-remaster/1624945511?i=1624945512"
+        ));
+        assert!(is_apple_music_url(
+            "https://music.apple.com/hu/song/timeless/1770380890"
+        ));
+        assert!(is_apple_music_url(
+            "https://itunes.apple.com/us/album/never-gonna-give-you-up/1559523357"
+        ));
+        assert!(!is_apple_music_url(
+            "https://open.spotify.com/track/4cOdK2wGLETKBeP5fefF4x"
+        ));
+        assert!(!is_apple_music_url("https://www.youtube.com/watch?v=abc"));
+        assert!(!is_apple_music_url(""));
+    }
+
+    #[test]
+    fn apple_music_track_id_prefers_song_param() {
+        assert_eq!(
+            apple_music_track_id("https://music.apple.com/us/album/foo/1624945511?i=1624945512")
+                .as_deref(),
+            Some("1624945512")
+        );
+        assert_eq!(
+            apple_music_track_id("https://music.apple.com/es/song/timeless/1770380890").as_deref(),
+            Some("1770380890")
+        );
+        assert_eq!(
+            apple_music_track_id("https://music.apple.com/us/album/foo/1624945511").as_deref(),
+            Some("1624945511")
+        );
+        assert_eq!(
+            apple_music_track_id(
+                "https://music.apple.com/us/playlist/foo/pl.3950454ced8c45a3b0cc693c2a7db97b"
+            ),
+            None
+        );
+    }
+
+    #[test]
+    fn apple_music_country_reads_storefront_or_defaults() {
+        assert_eq!(
+            apple_music_country("https://music.apple.com/hu/song/timeless/1770380890"),
+            "HU"
+        );
+        assert_eq!(
+            apple_music_country("https://music.apple.com/us/album/foo/1624945511?i=1624945512"),
+            "US"
+        );
+        assert_eq!(apple_music_country("not a url"), "US");
     }
 }

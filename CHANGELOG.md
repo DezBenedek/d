@@ -1,6 +1,18 @@
 # Changelog
 
-## [1.3.0] - 2026-08-22
+## [1.5.0] - 2026-11-23
+
+### Added
+- `d port <n>` — show what is listening on a TCP port (via `lsof`)
+- `d killport <n>` — kill the process listening on a TCP port (TERM, then KILL if needed)
+- `d serve [dir] [--port]` — serve a folder over HTTP for local testing (via `python3`, prints localhost + LAN URL)
+- `d sys` — system info: OS, CPU, memory, disk free, uptime, LAN IP
+- `d git clean` — untrack ignored-but-tracked files, delete merged branches, prune origin (with confirmation)
+
+## [1.4.0] - 2026-11-23
+
+### Added
+- `d download music` now accepts **Apple Music** links (`music.apple.com`, `itunes.apple.com`): reads the track's artist/title from Apple's public catalog (no Apple ID needed) and downloads the match from YouTube via `spotdl`, same as Spotify
 
 ### Added
 - `d install yt-dlp` — installs `yt-dlp` and `ffmpeg` via Homebrew with no prompt

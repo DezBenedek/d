@@ -1,3 +1,4 @@
+mod clean;
 mod fix;
 mod setup;
 mod update;
@@ -9,5 +10,6 @@ pub fn run(command: GitCommands) {
         GitCommands::Fix => fix::run(),
         GitCommands::Setup => setup::run(),
         GitCommands::Update => update::run(),
+        GitCommands::Clean => clean::run(),
     }
 }

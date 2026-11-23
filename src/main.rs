@@ -30,6 +30,10 @@ fn main() {
 
     match cli.command {
         Some(Commands::Ip) => commands::ip::run(),
+        Some(Commands::Port { port }) => commands::port::run_show(port),
+        Some(Commands::Killport { port }) => commands::port::run_kill(port),
+        Some(Commands::Serve { dir, port }) => commands::serve::run(dir, port),
+        Some(Commands::Sys) => commands::sys::run(),
         Some(Commands::Version) => {
             println!("d {}", env!("CARGO_PKG_VERSION"));
         }

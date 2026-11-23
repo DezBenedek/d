@@ -37,7 +37,7 @@ pub fn run() {
     println!("{}", tr(&GIT_FIX_DONE));
 }
 
-fn list_ignored_tracked_files() -> Result<Vec<String>, String> {
+pub(crate) fn list_ignored_tracked_files() -> Result<Vec<String>, String> {
     let output = Command::new("git")
         .args(["ls-files", "-ci", "--exclude-standard"])
         .output()
@@ -64,7 +64,7 @@ fn list_ignored_tracked_files() -> Result<Vec<String>, String> {
     Ok(files)
 }
 
-fn untrack_files(files: &[String]) -> Result<(), String> {
+pub(crate) fn untrack_files(files: &[String]) -> Result<(), String> {
     let status = Command::new("git")
         .arg("rm")
         .arg("-r")

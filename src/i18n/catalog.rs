@@ -153,14 +153,14 @@ pub const CMD_PUSH_MSG: Catalog = cat! {
 };
 
 pub const CMD_GIT: Catalog = cat! {
-    en: "Git helpers (fix, setup, update)",
-    hu: "Git-hez kapcsolódó segédparancsok (fix, setup, update)",
-    de: "Git-Hilfsbefehle (fix, setup, update)",
-    es: "Utilidades de Git (fix, setup, update)",
-    it: "Utility Git (fix, setup, update)",
-    zh: "Git 辅助命令 (fix, setup, update)",
-    ru: "Вспомогательные команды Git (fix, setup, update)",
-    uk: "Допоміжні команди Git (fix, setup, update)",
+    en: "Git helpers (fix, setup, update, clean)",
+    hu: "Git-hez kapcsolódó segédparancsok (fix, setup, update, clean)",
+    de: "Git-Hilfsbefehle (fix, setup, update, clean)",
+    es: "Utilidades de Git (fix, setup, update, clean)",
+    it: "Utility Git (fix, setup, update, clean)",
+    zh: "Git 辅助命令 (fix、setup、update、clean)",
+    ru: "Вспомогательные команды Git (fix, setup, update, clean)",
+    uk: "Допоміжні команди Git (fix, setup, update, clean)",
 };
 
 pub const CMD_GIT_FIX: Catalog = cat! {
@@ -373,25 +373,25 @@ pub const CMD_DOWNLOAD_VIDEO_QUALITY: Catalog = cat! {
 };
 
 pub const CMD_DOWNLOAD_MUSIC: Catalog = cat! {
-    en: "Download audio from YouTube, YouTube Music, or Spotify. For educational purposes only.",
-    hu: "Hang letöltése YouTube, YouTube Music vagy Spotify linkről. For educational purposes only.",
-    de: "Audio von YouTube, YouTube Music oder Spotify herunterladen. For educational purposes only.",
-    es: "Descargar audio de YouTube, YouTube Music o Spotify. For educational purposes only.",
-    it: "Scarica audio da YouTube, YouTube Music o Spotify. For educational purposes only.",
-    zh: "从 YouTube、YouTube Music 或 Spotify 下载音频。For educational purposes only.",
-    ru: "Скачать аудио с YouTube, YouTube Music или Spotify. For educational purposes only.",
-    uk: "Завантажити аудіо з YouTube, YouTube Music або Spotify. For educational purposes only.",
+    en: "Download audio from YouTube, YouTube Music, Spotify, or Apple Music. For educational purposes only.",
+    hu: "Hang letöltése YouTube, YouTube Music, Spotify vagy Apple Music linkről. For educational purposes only.",
+    de: "Audio von YouTube, YouTube Music, Spotify oder Apple Music herunterladen. For educational purposes only.",
+    es: "Descargar audio de YouTube, YouTube Music, Spotify o Apple Music. For educational purposes only.",
+    it: "Scarica audio da YouTube, YouTube Music, Spotify o Apple Music. For educational purposes only.",
+    zh: "从 YouTube、YouTube Music、Spotify 或 Apple Music 下载音频。For educational purposes only.",
+    ru: "Скачать аудио с YouTube, YouTube Music, Spotify или Apple Music. For educational purposes only.",
+    uk: "Завантажити аудіо з YouTube, YouTube Music, Spotify або Apple Music. For educational purposes only.",
 };
 
 pub const CMD_DOWNLOAD_MUSIC_URL: Catalog = cat! {
-    en: "YouTube, YouTube Music, or Spotify URL",
-    hu: "YouTube, YouTube Music vagy Spotify URL",
-    de: "YouTube-, YouTube-Music- oder Spotify-URL",
-    es: "URL de YouTube, YouTube Music o Spotify",
-    it: "URL di YouTube, YouTube Music o Spotify",
-    zh: "YouTube、YouTube Music 或 Spotify 链接",
-    ru: "URL YouTube, YouTube Music или Spotify",
-    uk: "URL YouTube, YouTube Music або Spotify",
+    en: "YouTube, YouTube Music, Spotify, or Apple Music URL",
+    hu: "YouTube, YouTube Music, Spotify vagy Apple Music URL",
+    de: "YouTube-, YouTube-Music-, Spotify- oder Apple-Music-URL",
+    es: "URL de YouTube, YouTube Music, Spotify o Apple Music",
+    it: "URL di YouTube, YouTube Music, Spotify o Apple Music",
+    zh: "YouTube、YouTube Music、Spotify 或 Apple Music 链接",
+    ru: "URL YouTube, YouTube Music, Spotify или Apple Music",
+    uk: "URL YouTube, YouTube Music, Spotify або Apple Music",
 };
 
 pub const CMD_DOWNLOAD_AUDIO_QUALITY: Catalog = cat! {
@@ -425,6 +425,360 @@ pub const CMD_INSTALL_YT_DLP: Catalog = cat! {
     zh: "通过 Homebrew 安装 yt-dlp 和 ffmpeg",
     ru: "Установить yt-dlp и ffmpeg через Homebrew",
     uk: "Встановити yt-dlp і ffmpeg через Homebrew",
+};
+
+// —— Port / Serve / Sys / Git clean —————————————————————————
+
+pub const CMD_GIT_CLEAN: Catalog = cat! {
+    en: "Untrack ignored files, delete merged branches, prune origin",
+    hu: "Ignore-olt fájlok kivétele a trackingből, beolvasztott branchek törlése, origin prune",
+    de: "Ignorierte Dateien enttracken, gemergte Branches löschen, origin aufräumen",
+    es: "Quitar del seguimiento archivos ignorados, eliminar ramas fusionadas, limpiar origin",
+    it: "Rimuovi dal tracking i file ignorati, elimina i branch fusi, pulisci origin",
+    zh: "取消跟踪被忽略的文件，删除已合并分支，清理 origin",
+    ru: "Убрать из отслеживания игнорируемые файлы, удалить слитые ветки, очистить origin",
+    uk: "Прибрати з відстеження ігноровані файли, видалити злиті гілки, очистити origin",
+};
+
+pub const CMD_PORT: Catalog = cat! {
+    en: "Show what is listening on a TCP port",
+    hu: "Ki hallgat egy TCP-porton",
+    de: "Anzeigen, was auf einem TCP-Port hört",
+    es: "Mostrar qué escucha en un puerto TCP",
+    it: "Mostra cosa è in ascolto su una porta TCP",
+    zh: "显示正在监听 TCP 端口的进程",
+    ru: "Показать, что слушает TCP-порт",
+    uk: "Показати, що слухає TCP-порт",
+};
+
+pub const CMD_PORT_NUMBER: Catalog = cat! {
+    en: "Port number",
+    hu: "Portszám",
+    de: "Portnummer",
+    es: "Número de puerto",
+    it: "Numero di porta",
+    zh: "端口号",
+    ru: "Номер порта",
+    uk: "Номер порту",
+};
+
+pub const CMD_KILLPORT: Catalog = cat! {
+    en: "Kill the process listening on a TCP port",
+    hu: "A TCP-portot foglaló folyamat leállítása",
+    de: "Prozess auf einem TCP-Port beenden",
+    es: "Terminar el proceso que escucha en un puerto TCP",
+    it: "Termina il processo in ascolto su una porta TCP",
+    zh: "终止监听 TCP 端口的进程",
+    ru: "Завершить процесс, слушающий TCP-порт",
+    uk: "Завершити процес, що слухає TCP-порт",
+};
+
+pub const CMD_KILLPORT_NUMBER: Catalog = cat! {
+    en: "Port number",
+    hu: "Portszám",
+    de: "Portnummer",
+    es: "Número de puerto",
+    it: "Numero di porta",
+    zh: "端口号",
+    ru: "Номер порта",
+    uk: "Номер порту",
+};
+
+pub const CMD_SERVE: Catalog = cat! {
+    en: "Serve a folder over HTTP for local testing",
+    hu: "Mappa kiszolgálása HTTP-n helyi teszteléshez",
+    de: "Ordner per HTTP für lokale Tests bereitstellen",
+    es: "Servir una carpeta por HTTP para pruebas locales",
+    it: "Servi una cartella via HTTP per test locali",
+    zh: "通过 HTTP 提供文件夹以便本地测试",
+    ru: "Раздавать папку по HTTP для локального тестирования",
+    uk: "Роздавати теку по HTTP для локального тестування",
+};
+
+pub const CMD_SERVE_DIR: Catalog = cat! {
+    en: "Folder to serve (default: current directory)",
+    hu: "Kiszolgálandó mappa (alapértelmezett: aktuális mappa)",
+    de: "Bereitzustellender Ordner (Standard: aktueller Ordner)",
+    es: "Carpeta a servir (predeterminado: directorio actual)",
+    it: "Cartella da servire (predefinito: directory corrente)",
+    zh: "要提供的文件夹（默认：当前目录）",
+    ru: "Папка для раздачи (по умолчанию: текущая)",
+    uk: "Тека для роздачі (за замовчуванням: поточна)",
+};
+
+pub const CMD_SERVE_PORT: Catalog = cat! {
+    en: "Port to listen on (default: 8000)",
+    hu: "Figyelési port (alapértelmezett: 8000)",
+    de: "Port (Standard: 8000)",
+    es: "Puerto (predeterminado: 8000)",
+    it: "Porta (predefinito: 8000)",
+    zh: "监听端口（默认：8000）",
+    ru: "Порт (по умолчанию: 8000)",
+    uk: "Порт (за замовчуванням: 8000)",
+};
+
+pub const CMD_SYS: Catalog = cat! {
+    en: "Print system info (OS, CPU, memory, disk, uptime, LAN IP)",
+    hu: "Rendszerinfó (OS, CPU, memória, lemez, üzemidő, LAN IP)",
+    de: "Systeminfo anzeigen (OS, CPU, Speicher, Platte, Laufzeit, LAN-IP)",
+    es: "Mostrar info del sistema (SO, CPU, memoria, disco, actividad, IP LAN)",
+    it: "Mostra info di sistema (SO, CPU, memoria, disco, attività, IP LAN)",
+    zh: "显示系统信息（系统、CPU、内存、磁盘、运行时间、局域网 IP）",
+    ru: "Показать информацию о системе (ОС, CPU, память, диск, аптайм, LAN IP)",
+    uk: "Показати інформацію про систему (ОС, CPU, пам'ять, диск, аптайм, LAN IP)",
+};
+
+pub const PORT_LISTENING: Catalog = cat! {
+    en: "Port {port} is used by:",
+    hu: "A(z) {port} portot használja:",
+    de: "Port {port} wird verwendet von:",
+    es: "El puerto {port} está en uso por:",
+    it: "La porta {port} è usata da:",
+    zh: "端口 {port} 正被占用：",
+    ru: "Порт {port} используется:",
+    uk: "Порт {port} використовується:",
+};
+
+pub const PORT_FREE: Catalog = cat! {
+    en: "Nothing is listening on port {port}.",
+    hu: "A(z) {port} porton semmi sem figyel.",
+    de: "Auf Port {port} hört nichts.",
+    es: "Nada escucha en el puerto {port}.",
+    it: "Niente in ascolto sulla porta {port}.",
+    zh: "端口 {port} 上没有监听的进程。",
+    ru: "На порту {port} ничего не слушает.",
+    uk: "На порту {port} нічого не слухає.",
+};
+
+pub const PORT_KILLED: Catalog = cat! {
+    en: "Killed {name} (PID {pid}).",
+    hu: "Leállítva: {name} (PID {pid}).",
+    de: "{name} beendet (PID {pid}).",
+    es: "{name} terminado (PID {pid}).",
+    it: "{name} terminato (PID {pid}).",
+    zh: "已终止 {name}（PID {pid}）。",
+    ru: "Завершён {name} (PID {pid}).",
+    uk: "Завершено {name} (PID {pid}).",
+};
+
+pub const PORT_GONE: Catalog = cat! {
+    en: "PID {pid} already exited.",
+    hu: "A(z) {pid} PID már kilépett.",
+    de: "PID {pid} bereits beendet.",
+    es: "El PID {pid} ya terminó.",
+    it: "Il PID {pid} è già terminato.",
+    zh: "PID {pid} 已退出。",
+    ru: "PID {pid} уже завершился.",
+    uk: "PID {pid} уже завершився.",
+};
+
+pub const PORT_KILL_FAIL: Catalog = cat! {
+    en: "Could not kill PID {pid}.",
+    hu: "Nem sikerült leállítani a(z) {pid} PID-et.",
+    de: "PID {pid} konnte nicht beendet werden.",
+    es: "No se pudo terminar el PID {pid}.",
+    it: "Impossibile terminare il PID {pid}.",
+    zh: "无法终止 PID {pid}。",
+    ru: "Не удалось завершить PID {pid}.",
+    uk: "Не вдалося завершити PID {pid}.",
+};
+
+pub const SERVE_SERVING: Catalog = cat! {
+    en: "Serving {dir} → {url} (LAN: {lan}) — Ctrl+C to stop.",
+    hu: "{dir} kiszolgálva → {url} (LAN: {lan}) — leállítás: Ctrl+C.",
+    de: "{dir} wird bereitgestellt → {url} (LAN: {lan}) — Stopp mit Ctrl+C.",
+    es: "Sirviendo {dir} → {url} (LAN: {lan}) — Ctrl+C para detener.",
+    it: "Servo {dir} → {url} (LAN: {lan}) — Ctrl+C per fermare.",
+    zh: "正在提供 {dir} → {url}（局域网：{lan}）— 按 Ctrl+C 停止。",
+    ru: "Раздаю {dir} → {url} (LAN: {lan}) — Ctrl+C для остановки.",
+    uk: "Роздаю {dir} → {url} (LAN: {lan}) — Ctrl+C для зупинки.",
+};
+
+pub const SERVE_NO_PYTHON: Catalog = cat! {
+    en: "python3 is required for `d serve` but was not found.",
+    hu: "A `d serve`-hez python3 kell, de nem található.",
+    de: "python3 wird für `d serve` benötigt, wurde aber nicht gefunden.",
+    es: "python3 es necesario para `d serve`, pero no se encontró.",
+    it: "python3 è necessario per `d serve`, ma non è stato trovato.",
+    zh: "`d serve` 需要 python3，但未找到。",
+    ru: "Для `d serve` нужен python3, но он не найден.",
+    uk: "Для `d serve` потрібен python3, але його не знайдено.",
+};
+
+pub const CLEAN_NOT_A_REPO: Catalog = cat! {
+    en: "Not a git repository.",
+    hu: "Nem git repository.",
+    de: "Kein Git-Repository.",
+    es: "No es un repositorio git.",
+    it: "Non è un repository git.",
+    zh: "不是 git 仓库。",
+    ru: "Не git-репозиторий.",
+    uk: "Не git-репозиторій.",
+};
+
+pub const CLEAN_EMPTY: Catalog = cat! {
+    en: "Already clean — nothing to do.",
+    hu: "Már tiszta — nincs teendő.",
+    de: "Bereits sauber — nichts zu tun.",
+    es: "Ya está limpio — nada que hacer.",
+    it: "Già pulito — niente da fare.",
+    zh: "已经很干净 — 无需操作。",
+    ru: "Уже чисто — нечего делать.",
+    uk: "Уже чисто — нічого робити.",
+};
+
+pub const CLEAN_CONFIRM: Catalog = cat! {
+    en: "Proceed with cleanup?",
+    hu: "Végrehajtom a takarítást?",
+    de: "Bereinigung durchführen?",
+    es: "¿Proceder con la limpieza?",
+    it: "Procedere con la pulizia?",
+    zh: "要执行清理吗？",
+    ru: "Выполнить очистку?",
+    uk: "Виконати очищення?",
+};
+
+pub const CLEAN_BRANCHES: Catalog = cat! {
+    en: "Merged branches to delete ({count}):",
+    hu: "Törlendő beolvasztott branchek ({count}):",
+    de: "Zu löschende gemergte Branches ({count}):",
+    es: "Ramas fusionadas a eliminar ({count}):",
+    it: "Branch fusi da eliminare ({count}):",
+    zh: "要删除的已合并分支（{count}）：",
+    ru: "Слитые ветки для удаления ({count}):",
+    uk: "Злиті гілки для видалення ({count}):",
+};
+
+pub const CLEAN_PRUNE: Catalog = cat! {
+    en: "Prune stale remote-tracking branches (origin)",
+    hu: "Elavult remote-tracking branchek törlése (origin)",
+    de: "Veraltete Remote-Tracking-Branches aufräumen (origin)",
+    es: "Limpiar ramas remotas obsoletas (origin)",
+    it: "Rimuovi i branch di tracking remoto obsoleti (origin)",
+    zh: "清理过时的远程跟踪分支（origin）",
+    ru: "Очистить устаревшие remote-tracking ветки (origin)",
+    uk: "Очистити застарілі remote-tracking гілки (origin)",
+};
+
+pub const CLEAN_DONE: Catalog = cat! {
+    en: "Cleanup complete. Commit the change, e.g.: d push cleanup",
+    hu: "Takarítás kész. Commitold a változást, pl.: d push takaritas",
+    de: "Bereinigung fertig. Noch committen, z. B.: d push cleanup",
+    es: "Limpieza lista. Confirma el cambio, p. ej.: d push cleanup",
+    it: "Pulizia completata. Fai commit, es.: d push cleanup",
+    zh: "清理完成。请提交更改，例如：d push cleanup",
+    ru: "Очистка завершена. Закоммитьте изменение, напр.: d push cleanup",
+    uk: "Очищення завершено. Зробіть коміт, напр.: d push cleanup",
+};
+
+pub const CLEAN_BRANCH_FAIL: Catalog = cat! {
+    en: "Failed to delete branch {branch}: {error}",
+    hu: "Nem sikerült törölni a(z) {branch} branchet: {error}",
+    de: "Branch {branch} konnte nicht gelöscht werden: {error}",
+    es: "No se pudo eliminar la rama {branch}: {error}",
+    it: "Impossibile eliminare il branch {branch}: {error}",
+    zh: "无法删除分支 {branch}：{error}",
+    ru: "Не удалось удалить ветку {branch}: {error}",
+    uk: "Не вдалося видалити гілку {branch}: {error}",
+};
+
+pub const CLEAN_WARN: Catalog = cat! {
+    en: "Warning: {error}",
+    hu: "Figyelmeztetés: {error}",
+    de: "Warnung: {error}",
+    es: "Aviso: {error}",
+    it: "Avviso: {error}",
+    zh: "警告：{error}",
+    ru: "Предупреждение: {error}",
+    uk: "Попередження: {error}",
+};
+
+pub const SYS_OS: Catalog = cat! {
+    en: "OS",
+    hu: "OS",
+    de: "BS",
+    es: "SO",
+    it: "SO",
+    zh: "系统",
+    ru: "ОС",
+    uk: "ОС",
+};
+
+pub const SYS_CPU: Catalog = cat! {
+    en: "CPU",
+    hu: "CPU",
+    de: "CPU",
+    es: "CPU",
+    it: "CPU",
+    zh: "CPU",
+    ru: "CPU",
+    uk: "CPU",
+};
+
+pub const SYS_CORES: Catalog = cat! {
+    en: "cores",
+    hu: "mag",
+    de: "Kerne",
+    es: "núcleos",
+    it: "core",
+    zh: "核",
+    ru: "ядер",
+    uk: "ядер",
+};
+
+pub const SYS_MEMORY: Catalog = cat! {
+    en: "Memory",
+    hu: "Memória",
+    de: "Arbeitsspeicher",
+    es: "Memoria",
+    it: "Memoria",
+    zh: "内存",
+    ru: "Память",
+    uk: "Пам'ять",
+};
+
+pub const SYS_DISK: Catalog = cat! {
+    en: "Disk /",
+    hu: "Lemez /",
+    de: "Platte /",
+    es: "Disco /",
+    it: "Disco /",
+    zh: "磁盘 /",
+    ru: "Диск /",
+    uk: "Диск /",
+};
+
+pub const SYS_FREE: Catalog = cat! {
+    en: "free",
+    hu: "szabad",
+    de: "frei",
+    es: "libre",
+    it: "libero",
+    zh: "可用",
+    ru: "свободно",
+    uk: "вільно",
+};
+
+pub const SYS_UPTIME: Catalog = cat! {
+    en: "Uptime",
+    hu: "Üzemidő",
+    de: "Laufzeit",
+    es: "Actividad",
+    it: "Attività",
+    zh: "运行时间",
+    ru: "Аптайм",
+    uk: "Аптайм",
+};
+
+pub const SYS_IP: Catalog = cat! {
+    en: "LAN IP",
+    hu: "LAN IP",
+    de: "LAN-IP",
+    es: "IP LAN",
+    it: "IP LAN",
+    zh: "局域网 IP",
+    ru: "LAN IP",
+    uk: "LAN IP",
 };
 
 // —— Common ————————————————————————————————————————————————
@@ -1535,25 +1889,25 @@ pub const YT_QUALITY_INVALID: Catalog = cat! {
 };
 
 pub const MUSIC_URL_PROMPT: Catalog = cat! {
-    en: "YouTube / YouTube Music / Spotify URL",
-    hu: "YouTube / YouTube Music / Spotify URL",
-    de: "YouTube- / YouTube-Music- / Spotify-URL",
-    es: "URL de YouTube / YouTube Music / Spotify",
-    it: "URL di YouTube / YouTube Music / Spotify",
-    zh: "YouTube / YouTube Music / Spotify 链接",
-    ru: "URL YouTube / YouTube Music / Spotify",
-    uk: "URL YouTube / YouTube Music / Spotify",
+    en: "YouTube / YouTube Music / Spotify / Apple Music URL",
+    hu: "YouTube / YouTube Music / Spotify / Apple Music URL",
+    de: "YouTube- / YouTube-Music- / Spotify- / Apple-Music-URL",
+    es: "URL de YouTube / YouTube Music / Spotify / Apple Music",
+    it: "URL di YouTube / YouTube Music / Spotify / Apple Music",
+    zh: "YouTube / YouTube Music / Spotify / Apple Music 链接",
+    ru: "URL YouTube / YouTube Music / Spotify / Apple Music",
+    uk: "URL YouTube / YouTube Music / Spotify / Apple Music",
 };
 
 pub const MUSIC_INVALID_URL: Catalog = cat! {
-    en: "Not a supported URL. Use YouTube, YouTube Music, or Spotify.",
-    hu: "Nem támogatott URL. Használj YouTube, YouTube Music vagy Spotify linket.",
-    de: "Keine unterstützte URL. Verwende YouTube, YouTube Music oder Spotify.",
-    es: "URL no compatible. Usa YouTube, YouTube Music o Spotify.",
-    it: "URL non supportato. Usa YouTube, YouTube Music o Spotify.",
-    zh: "不支持的链接。请使用 YouTube、YouTube Music 或 Spotify。",
-    ru: "Неподдерживаемый URL. Используйте YouTube, YouTube Music или Spotify.",
-    uk: "Непідтримуваний URL. Використовуйте YouTube, YouTube Music або Spotify.",
+    en: "Not a supported URL. Use YouTube, YouTube Music, Spotify, or Apple Music.",
+    hu: "Nem támogatott URL. Használj YouTube, YouTube Music, Spotify vagy Apple Music linket.",
+    de: "Keine unterstützte URL. Verwende YouTube, YouTube Music, Spotify oder Apple Music.",
+    es: "URL no compatible. Usa YouTube, YouTube Music, Spotify o Apple Music.",
+    it: "URL non supportato. Usa YouTube, YouTube Music, Spotify o Apple Music.",
+    zh: "不支持的链接。请使用 YouTube、YouTube Music、Spotify 或 Apple Music。",
+    ru: "Неподдерживаемый URL. Используйте YouTube, YouTube Music, Spotify или Apple Music.",
+    uk: "Непідтримуваний URL. Використовуйте YouTube, YouTube Music, Spotify або Apple Music.",
 };
 
 pub const MUSIC_QUALITY_PROMPT: Catalog = cat! {

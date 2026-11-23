@@ -1,6 +1,6 @@
 # d CLI
 
-A small, fast command-line toolkit for everyday developer tasks on macOS — git workflow helpers, GitHub repo setup, local networking, secret generation, educational YouTube download, and self-updates.
+A small, fast command-line toolkit for everyday developer tasks on macOS — git workflow helpers, GitHub repo setup, local networking, port inspection, static file serving, system info, secret generation, educational YouTube download, and self-updates.
 
 ## Why d?
 
@@ -47,6 +47,7 @@ d push add login screen
 | `d git setup` | Interactive setup: ensures `gh` is installed/authenticated, configures `user.name` / `user.email`, creates a public or private GitHub repo (optional org), or overwrites an existing one after moving old remote code to a `backup/pre-setup-*` branch |
 | `d git fix` | Untracks files that are listed in `.gitignore` but still tracked in the index |
 | `d git update` | `git pull origin <current-branch>` |
+| `d git clean` | Untrack ignored files, delete merged branches, prune origin (asks first) |
 
 ### Self-update
 
@@ -62,6 +63,33 @@ Prints your machine’s LAN IP (useful for local servers / device testing):
 
 ```bash
 d ip
+```
+
+### Port lookup
+
+See what is listening on a TCP port, or kill it (TERM first, KILL if it stays alive):
+
+```bash
+d port 3000
+d killport 3000
+```
+
+### Static server
+
+Serve a folder over HTTP for local testing (via `python3`). Defaults to the current directory on port 8000, and prints both the localhost and LAN URLs:
+
+```bash
+d serve
+d serve ./dist
+d serve ./dist --port 8080
+```
+
+### System info
+
+OS, CPU, memory, free disk, uptime, and LAN IP in one place:
+
+```bash
+d sys
 ```
 
 ### Secret / token generators
@@ -113,15 +141,16 @@ d download youtube https://www.youtube.com/watch?v=...
 
 **For educational purposes only.**
 
-Downloads audio as MP3 from **YouTube**, **YouTube Music**, or **Spotify** links. After the URL you pick bitrate (**128k**, **192k**, **256k**, **320k**; default 320k), then the folder picker.
+Downloads audio as MP3 from **YouTube**, **YouTube Music**, **Spotify**, or **Apple Music** links. After the URL you pick bitrate (**128k**, **192k**, **256k**, **320k**; default 320k), then the folder picker.
 
-Spotify cannot be ripped from Spotify’s own files; `spotdl` matches the track and downloads it from YouTube (installed automatically with `pipx` if needed). `d download music` also installs `yt-dlp` / `ffmpeg` via Homebrew when missing.
+Spotify cannot be ripped from Spotify’s own files; `spotdl` matches the track and downloads it from YouTube (installed automatically with `pipx` if needed). Apple Music works the same way — no Apple ID or subscription needed: `d` reads the track’s artist/title from Apple’s public catalog and downloads the match from YouTube via `spotdl`, so Apple’s DRM files are never touched. `d download music` also installs `yt-dlp` / `ffmpeg` via Homebrew when missing.
 
 ```bash
 d download music
 d download music --quality 320k
 d download music https://music.youtube.com/watch?v=...
 d download music https://open.spotify.com/track/...
+d download music https://music.apple.com/hu/song/...
 ```
 
 ### Multilingual UI
@@ -156,6 +185,11 @@ Help text, prompts, and command messages are all localized.
 | `d git setup` | Interactive git + GitHub repo setup via `gh` |
 | `d git fix` | Remove ignore-but-tracked files from the index |
 | `d git update` | Pull latest changes for the current branch |
+| `d git clean` | Untrack ignored files, delete merged branches, prune origin (asks first) |
+| `d port <n>` | Show what is listening on a TCP port |
+| `d killport <n>` | Kill the process listening on a TCP port |
+| `d serve [dir]` | Serve a folder over HTTP for local testing (default port 8000) |
+| `d sys` | Print system info (OS, CPU, memory, disk, uptime, LAN IP) |
 | `d gen hex [n]` | Random hex (`openssl rand -hex`, default `n=32`) |
 | `d gen base64 [n]` | Random base64 (`openssl rand -base64`, default `n=32`) |
 | `d gen uuid` | Random UUID v4 |
@@ -166,7 +200,7 @@ Help text, prompts, and command messages are all localized.
 | `d macos reset` | Undo `d macos start` |
 | `d install yt-dlp` | Install yt-dlp and ffmpeg via Homebrew |
 | `d download youtube [url]` | Download a YouTube video (270p–1440p). For educational purposes only. |
-| `d download music [url]` | Download audio from YouTube / YouTube Music / Spotify (128k–320k). For educational purposes only. |
+| `d download music [url]` | Download audio from YouTube / YouTube Music / Spotify / Apple Music (128k–320k). For educational purposes only. |
 | `--lang` / `-L` | Force UI language |
 | `--authors` | Print author name |
 | `--doc` | Print documentation URL |
@@ -189,6 +223,8 @@ d push untrack ignored files
 
 # Utilities
 d ip
+d port 3000
+d sys
 d gen hex 64
 d gen uuid
 d gen password 32
@@ -217,7 +253,7 @@ CLI parsing uses [`clap`](https://crates.io/crates/clap).
 
 ## Info
 
-- **Version:** 1.3.0
+- **Version:** 1.5.0
 - **MSRV:** 1.85
 - **Author:** Dezső Benedek
 - **Repo / docs:** [github.com/DezBenedek/d](https://github.com/DezBenedek/d)
